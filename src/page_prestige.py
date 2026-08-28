@@ -40,6 +40,70 @@ def e(x):
     return _H.escape(str(x), quote=True)
 
 
+# Le diamant. DESSINE, pas copie : la pierre de l'image envoyee par le client
+# est une photographie, elle serait floue a 14 px dans un logo et pixellisee
+# sur un ecran a haute densite. Un trace vectoriel reste net a toutes les
+# tailles, prend 300 octets, et se recolore avec le reste de la page.
+#
+#   contour  : table (6,3)-(18,3), rondiste a y=9, culasse en (12,21)
+#   facettes : couronne (6,3)->(9,9), (12,3)->(9,9) et leurs symetriques,
+#              puis pavillon (9,9)->(12,21) et (15,9)->(12,21)
+DIAMANT = (
+    '<svg class="diamant" viewBox="0 0 24 24" aria-hidden="true" '
+    'focusable="false">'
+    '<path d="M6 3h12l4 6-10 12L2 9z"/>'
+    '<path d="M2 9h20M6 3l3 6M18 3l-3 6M12 3l-3 6M12 3l3 6'
+    'M9 9l3 12M15 9l-3 12"/>'
+    '</svg>')
+
+
+def photo(src, alt_fr, alt_en):
+    """Une VRAIE image, par opposition a un emplacement en attente.
+
+    La largeur et la hauteur sont lues dans le fichier au moment de la
+    construction, pas ecrites a la main : le navigateur reserve alors la
+    bonne place avant meme d'avoir telecharge l'image, et la page ne saute
+    pas. Ecrites a la main, elles deviennent fausses au premier remplacement
+    du fichier et personne ne s'en apercoit.
+    """
+    chemin = os.path.join(DEMO, src)
+    with open(chemin, 'rb') as f:
+        tete = f.read(24)
+    larg, haut = _dimensions_jpeg(chemin) if tete[:2] == b'\xff\xd8' \
+        else (None, None)
+    if not larg:
+        raise SystemExit('dimensions illisibles : %s' % chemin)
+    return ('<figure class="cadre photo" data-photo="%s" data-ratio="%d/%d">'
+            '<img src="%s" alt="%s" data-alt-fr="%s" data-alt-en="%s" '
+            'width="%d" height="%d" '
+            'style="aspect-ratio:%d/%d">'
+            '</figure>'
+            % (e(src), larg, haut, e(src), e(alt_fr), e(alt_fr), e(alt_en),
+               larg, haut, larg, haut))
+
+
+def _dimensions_jpeg(chemin):
+    """Largeur et hauteur d'un JPEG, lues dans ses marqueurs SOF."""
+    with open(chemin, 'rb') as f:
+        f.read(2)
+        while True:
+            octet = f.read(1)
+            if not octet:
+                return None, None
+            if octet != b'\xff':
+                continue
+            while octet == b'\xff':
+                octet = f.read(1)
+            marqueur = octet[0]
+            taille = int.from_bytes(f.read(2), 'big')
+            if 0xC0 <= marqueur <= 0xCF and marqueur not in (0xC4, 0xC8, 0xCC):
+                f.read(1)
+                h = int.from_bytes(f.read(2), 'big')
+                w = int.from_bytes(f.read(2), 'big')
+                return w, h
+            f.read(taille - 2)
+
+
 def cadre(src, ratio, legende_fr, legende_en):
     """Un emplacement d'image.
 
@@ -69,7 +133,7 @@ def entete(page):
         return ('<a href="%s"%s data-fr="%s" data-en="%s">%s</a>'
                 % (href, a, e(fr), e(en), fr))
     return """<header class="haut"><div class="haut-in">
-  <a class="marque" href="index.html"><span class="mot">Maisons de <b>Prestige</b></span><span
+  <a class="marque" href="index.html">__DIAMANT__<span class="mot">Maisons de <b>Prestige</b></span><span
      class="ph-marque" data-fr="nom a definir" data-en="name to be set"
      >nom a definir</span></a>
   <nav class="nav">
@@ -83,6 +147,7 @@ def entete(page):
     <button type="button" data-l="en" aria-pressed="false">EN</button>
   </div>
 </div></header>""" \
+        .replace('__DIAMANT__', DIAMANT) \
         .replace('__L1__', lien('index.html', 'accueil', 'Accueil', 'Home')) \
         .replace('__L2__', lien('collection.html', 'collection',
                                 'La collection', 'The collection')) \
@@ -137,6 +202,13 @@ JS_LANGUE = """
     document.documentElement.lang = l;
     var n = document.querySelectorAll('[data-fr][data-en]');
     for (var i=0;i<n.length;i++) n[i].innerHTML = n[i].getAttribute('data-'+l);
+    /* Le texte alternatif d'une image est du contenu, pas de la decoration :
+       il se traduit comme le reste. Laisse en francais, il devient le seul
+       morceau de la page qui ne suit pas le bouton de langue — et c'est
+       precisement le morceau que lit un lecteur d'ecran. */
+    var im = document.querySelectorAll('img[data-alt-en][data-alt-fr]');
+    for (var k=0;k<im.length;k++)
+      im[k].setAttribute('alt', im[k].getAttribute('data-alt-'+l));
     var b = document.querySelectorAll('.langue button');
     for (var j=0;j<b.length;j++)
       b[j].setAttribute('aria-pressed',
@@ -411,6 +483,31 @@ def page_accueil(D):
              'data-en="See all %d brands">Voir les %d maisons</a></p>'
              % (n_maisons, n_maisons, n_maisons))
     o.append('</div></section>')
+
+    # ------------------------------------------------------------ fondateur
+    #
+    # Ce bloc ne porte AUCUNE biographie inventee. Un nom, un role, et la
+    # phrase que le client a lui-meme ecrite. Le reste est un emplacement
+    # signale : ecrire trois lignes plausibles sur la trajectoire d'une
+    # personne reelle, c'est publier une affirmation sur quelqu'un.
+    o.append('<section class="fondateur"><div class="enveloppe">')
+    o.append('<div class="fond-in"><div class="fond-photo">')
+    o.append(photo('images/fondateur.jpg',
+                   'Hakim Adjaoudi, fondateur',
+                   'Hakim Adjaoudi, founder'))
+    o.append('</div><div class="fond-txt">')
+    o.append(bi('Le fondateur', 'The founder', 'p', 'eyebrow'))
+    o.append('<h2 class="titre-sec">Hakim Adjaoudi</h2>')
+    o.append('<p class="fond-role" data-fr="%s" data-en="%s">%s</p>'
+             % (e('Fondateur, JNCORP INC.'), e('Founder, JNCORP INC.'),
+                e('Fondateur, JNCORP INC.')))
+    o.append('<p class="devise">' + DIAMANT
+             + '<span>Equilibrium, Equity and Light</span></p>')
+    o.append('<p class="cms-tbc" data-fr="%s" data-en="%s">%s</p>'
+             % (e('Texte du fondateur a fournir'),
+                e('Founder statement to be supplied'),
+                e('Texte du fondateur a fournir')))
+    o.append('</div></div></div></section>')
 
     # ---------------------------------------------------------------- ruban
     o.append('<section class="ruban"><div class="enveloppe"><div class="ruban-in">')

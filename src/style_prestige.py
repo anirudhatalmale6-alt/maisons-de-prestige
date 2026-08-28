@@ -80,6 +80,32 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(31px,4.4vw,54px);
  line-height:1.1;letter-spacing:-.01em;margin:0 0 20px;max-width:17ch}
 .chapo{font-size:18px;color:var(--doux);max-width:56ch;margin:0}
 
+/* ---------------------------------------------------------------- diamant */
+/* Trace, pas rempli : la pierre est faite de ses aretes. `currentColor` la
+   laisse suivre la couleur du texte partout ou on la pose. */
+.diamant{width:.82em;height:.82em;flex:none;fill:none;stroke:currentColor;
+ stroke-width:1.25;stroke-linejoin:round;stroke-linecap:round;
+ vector-effect:non-scaling-stroke}
+.marque .diamant{color:var(--or);width:19px;height:19px;
+ align-self:center;margin-right:2px}
+
+/* -------------------------------------------------------------- fondateur */
+.fondateur{background:var(--noir2)}
+.fond-in{display:grid;grid-template-columns:300px 1fr;gap:52px;
+ align-items:center}
+.fond-photo .cadre{border:1px solid var(--trait)}
+.fond-role{color:var(--or);font-size:13px;letter-spacing:.16em;
+ text-transform:uppercase;margin:0 0 22px}
+.devise{display:flex;align-items:center;gap:12px;margin:0 0 22px;
+ font-family:var(--serif);font-size:21px;color:var(--texte)}
+.devise .diamant{width:22px;height:22px;color:var(--or)}
+/* Ce qui reste a fournir : cadre pointille, pas de rouge invente, et surtout
+   pas la couleur du texte courant — un emplacement qui ressemble a du
+   contenu finit par etre lu comme du contenu. */
+.cms-tbc{display:inline-block;font-size:13px;font-weight:600;
+ padding:3px 10px;border:1px dashed var(--trait2);border-radius:4px;
+ background:var(--or-doux);color:var(--or);letter-spacing:.02em}
+
 /* ---------------------------------------------------------------- sections */
 section{padding:78px 0;border-bottom:1px solid var(--trait)}
 .titre-sec{font-family:var(--serif);font-weight:400;
@@ -148,6 +174,7 @@ section{padding:78px 0;border-bottom:1px solid var(--trait)}
 /* ----------------------------------------------------------------- images */
 .cadre{position:relative;display:block;margin:0;overflow:hidden;
  background:var(--noir3)}
+.cadre.photo img{display:block;width:100%;height:auto}
 .cadre .ph{display:flex;flex-direction:column;align-items:center;
  justify-content:center;gap:6px;width:100%;
  border:1px dashed var(--trait2);color:var(--faible);text-align:center;
@@ -267,6 +294,8 @@ footer a{color:var(--doux)}
 /* -------------------------------------------------------------- reglages */
 @media(max-width:900px){
   .hero-in{grid-template-columns:1fr;gap:30px}
+  .fond-in{grid-template-columns:1fr;gap:28px}
+  .fond-photo{max-width:280px}
   .hero-img{order:-1}
   .manifeste{grid-template-columns:1fr;gap:0}
   .travail{grid-template-columns:1fr;gap:26px}

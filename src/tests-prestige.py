@@ -408,6 +408,49 @@ t('les deux liens vers les autres sites sont presents sur les deux pages',
   and ACC.count(page_prestige.URL_ANNUAIRE) >= 1
   and COL.count(page_prestige.URL_ANNUAIRE) >= 1)
 
+# ---- le diamant et le fondateur ----
+t('le diamant est present dans l\'en-tete des deux pages',
+  ACC.count('class="diamant"') >= 1 and COL.count('class="diamant"') >= 1,
+  (ACC.count('class="diamant"'), COL.count('class="diamant"')))
+t('le diamant est dessine, pas une image a telecharger',
+  '<svg class="diamant"' in ACC and 'diamant.png' not in TOUT
+  and 'diamant.svg' not in TOUT)
+
+# Une image REELLE, contrairement aux emplacements en attente : le ratio
+# ecrit dans la page doit etre celui du fichier, sinon le navigateur reserve
+# une place fausse et la page saute quand l'image arrive.
+photos = re.findall(r'data-photo="([^"]+)" data-ratio="(\d+)/(\d+)"', ACC)
+t('la page declare la photo du fondateur', len(photos) == 1, photos)
+for src, w, h in photos:
+    chemin = os.path.join(DEMO, src)
+    t('le fichier %s existe' % src, os.path.isfile(chemin), chemin)
+    if os.path.isfile(chemin):
+        vrai = page_prestige._dimensions_jpeg(chemin)
+        t('%s : le ratio ecrit est celui du fichier (%s)' % (src, vrai),
+          vrai == (int(w), int(h)), (vrai, (int(w), int(h))))
+        balise = re.search(r'<img src="%s"[^>]*>' % re.escape(src), ACC).group(0)
+        t('la balise porte width et height, pour reserver la place',
+          'width="%s"' % w in balise and 'height="%s"' % h in balise, balise)
+        t('le texte alternatif existe dans les deux langues',
+          'data-alt-fr="' in balise and 'data-alt-en="' in balise, balise)
+
+t('le fondateur est nomme', 'Hakim Adjaoudi' in ACC)
+t('son role est ecrit', 'Fondateur, JNCORP INC.' in ACC)
+t('sa devise est reprise telle qu\'il l\'a ecrite',
+  'Equilibrium, Equity and Light' in ACC)
+# Aucune biographie inventee : le bloc porte un marqueur explicite a la
+# place du texte, et pas trois lignes plausibles sur une personne reelle.
+bloc = re.search(r'<section class="fondateur">.*?</section>', ACC, re.S)
+t('le bloc fondateur existe', bool(bloc))
+if bloc:
+    corps_f = bloc.group(0)
+    t('le texte du fondateur est marque comme a fournir, pas invente',
+      'Texte du fondateur a fournir' in corps_f)
+    phrases = [x for x in re.findall(r'>([^<>]{60,})<', corps_f)
+               if 'Equilibrium' not in x]
+    t('aucun paragraphe biographique n\'a ete redige a sa place',
+      not phrases, [x[:70] for x in phrases[:2]])
+
 t('la marque du site est encore marquee comme un placeholder',
   'nom a definir' in ACC and 'nom a definir' in COL)
 
