@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La collection — Maisons de Prestige</title>
+<meta name="description" content="Les maisons hotelieres de prestige, leurs modes d&#x27;exploitation, leurs honoraires et la taille d&#x27;actif qu&#x27;elles acceptent.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --noir:#0b0b0c;      /* le fond */
+  --noir2:#121214;     /* surface posee dessus */
+  --noir3:#191A1D;     /* surface au-dessus encore */
+  --trait:rgba(236,231,223,.13);
+  --trait2:rgba(236,231,223,.26);
+  --texte:#ece7df;
+  --doux:#a8a199;      /* texte secondaire */
+  --faible:#7d766e;    /* legendes */
+  --or:#c8a96a;        /* l'unique accent */
+  --or-doux:rgba(200,169,106,.14);
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,
+          'Times New Roman',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--noir);color:var(--texte);font-family:var(--sans);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%}
+.enveloppe{max-width:1220px;margin:0 auto;padding:0 34px}
+
+/* ---------------------------------------------------------------- en-tete */
+.haut{position:sticky;top:0;z-index:60;background:rgba(11,11,12,.86);
+ backdrop-filter:blur(14px);border-bottom:1px solid var(--trait)}
+.haut-in{display:flex;align-items:center;gap:26px;
+ max-width:1220px;margin:0 auto;padding:16px 34px}
+.marque{font-family:var(--serif);font-size:21px;letter-spacing:.10em;
+ text-transform:uppercase;text-decoration:none;white-space:nowrap;
+ display:flex;align-items:baseline;gap:9px}
+.marque .mot{white-space:nowrap}
+.marque b{color:var(--or);font-weight:400}
+.ph-marque{font-family:var(--sans);font-size:9.5px;letter-spacing:.06em;
+ text-transform:none;color:var(--or);border:1px dashed var(--trait2);
+ border-radius:4px;padding:1px 6px;white-space:nowrap}
+.nav{display:flex;gap:22px;margin-left:auto;align-items:center}
+.nav a{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;
+ text-decoration:none;color:var(--doux);padding:6px 0;
+ border-bottom:1px solid transparent}
+.nav a:hover,.nav a[aria-current]{color:var(--texte);border-bottom-color:var(--or)}
+.langue{display:flex;border:1px solid var(--trait);border-radius:2px;
+ overflow:hidden}
+.langue button{background:none;border:0;color:var(--doux);cursor:pointer;
+ font:inherit;font-size:11.5px;letter-spacing:.12em;padding:6px 11px}
+.langue button[aria-pressed=true]{background:var(--or);color:#17130c}
+
+/* ------------------------------------------------------------------- hero */
+/* Le titre n'est PAS pose par-dessus l'image. Une superposition tient tant
+   que le texte est plus court que la photo ; le jour ou il fait cinq lignes,
+   il remonte sous l'en-tete colle et se fait couper. Deux colonnes ne
+   peuvent pas se chevaucher. */
+.hero{padding:58px 0 76px;border-bottom:1px solid var(--trait)}
+.hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;
+ align-items:center}
+.surtitre{font-size:11.5px;letter-spacing:.30em;text-transform:uppercase;
+ color:var(--or);margin:0 0 18px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(31px,4.4vw,54px);
+ line-height:1.1;letter-spacing:-.01em;margin:0 0 20px;max-width:17ch}
+.chapo{font-size:18px;color:var(--doux);max-width:56ch;margin:0}
+
+/* ---------------------------------------------------------------- sections */
+section{padding:78px 0;border-bottom:1px solid var(--trait)}
+.titre-sec{font-family:var(--serif);font-weight:400;
+ font-size:clamp(25px,3.4vw,38px);line-height:1.15;margin:0 0 16px;
+ max-width:22ch}
+.intro-sec{color:var(--doux);max-width:62ch;margin:0 0 40px}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+ color:var(--or);margin:0 0 14px}
+
+/* ------------------------------------------------------------ le manifeste */
+.manifeste{display:grid;grid-template-columns:1fr 1fr;gap:52px}
+.manifeste p{margin:0 0 18px;color:var(--doux)}
+.manifeste p:first-child{font-family:var(--serif);font-size:21px;
+ line-height:1.5;color:var(--texte)}
+.manifeste strong{color:var(--texte);font-weight:600}
+
+/* ---------------------------------------------------------- les paliers */
+.paliers{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+ gap:1px;background:var(--trait);border:1px solid var(--trait)}
+.palier{background:var(--noir);padding:26px 22px}
+.palier h3{font-family:var(--serif);font-weight:400;font-size:20px;
+ margin:16px 0 8px}
+.palier p{margin:0;font-size:14px;color:var(--doux);line-height:1.55}
+.palier .n{font-size:11px;letter-spacing:.22em;color:var(--or)}
+
+/* ------------------------------------------------------------- les chiffres */
+.chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+ gap:34px}
+.chiffre{border-top:1px solid var(--or);padding-top:16px}
+.chiffre b{display:block;font-family:var(--serif);font-weight:400;
+ font-size:clamp(30px,4.2vw,46px);line-height:1}
+.chiffre span{display:block;margin-top:8px;font-size:12px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--faible)}
+
+/* ------------------------------------------------------------- les modes */
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+ gap:26px}
+.mode{border:1px solid var(--trait);padding:28px 24px;background:var(--noir2)}
+.mode h3{font-family:var(--serif);font-weight:400;font-size:22px;margin:0 0 6px}
+.mode .base{font-size:12px;letter-spacing:.05em;color:var(--or);
+ margin:0 0 14px;line-height:1.5}
+.mode p{margin:0;color:var(--doux);font-size:14.5px}
+
+/* -------------------------------------------------------------- les cartes */
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));
+ gap:26px}
+.carte{background:var(--noir2);border:1px solid var(--trait);
+ display:flex;flex-direction:column;text-align:left;padding:0;color:inherit;
+ font:inherit;cursor:pointer;transition:border-color .18s,transform .18s;
+ text-decoration:none}
+.carte *{text-decoration:none}
+.carte:hover{border-color:var(--trait2);transform:translateY(-2px)}
+.carte-corps{padding:22px 22px 24px;display:flex;flex-direction:column;
+ flex:1}
+.carte .dist{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--or);margin-bottom:11px}
+.carte h3{font-family:var(--serif);font-weight:400;font-size:23px;
+ line-height:1.15;margin:0 0 4px}
+.carte .grp{font-size:12.5px;color:var(--faible);margin:0 0 13px}
+.carte .res{font-size:14px;color:var(--doux);margin:0 0 18px;flex:1}
+.carte dl{margin:0;padding-top:15px;border-top:1px solid var(--trait);
+ display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px}
+.carte dt{color:var(--faible)}
+.carte dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ----------------------------------------------------------------- images */
+.cadre{position:relative;display:block;margin:0;overflow:hidden;
+ background:var(--noir3)}
+.cadre .ph{display:flex;flex-direction:column;align-items:center;
+ justify-content:center;gap:6px;width:100%;
+ border:1px dashed var(--trait2);color:var(--faible);text-align:center;
+ padding:16px}
+.cadre .ph b{font-weight:600;font-size:12px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--doux)}
+.cadre .ph span{font-size:11.5px;word-break:break-all;max-width:90%}
+
+/* ---------------------------------------------------------------- le ruban */
+.ruban{background:var(--noir2)}
+.ruban-in{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.ruban-txt{flex:1;min-width:280px}
+.bouton{display:inline-block;background:var(--or);color:#17130c;
+ text-decoration:none;font-size:12.5px;letter-spacing:.16em;
+ text-transform:uppercase;padding:15px 30px;border:0;cursor:pointer;
+ font-family:var(--sans);font-weight:600}
+.bouton:hover{background:#d8bc82}
+.bouton.fantome{background:none;color:var(--texte);
+ border:1px solid var(--trait2)}
+.bouton.fantome:hover{background:rgba(236,231,223,.06)}
+
+/* ------------------------------------------------------------------ filtres */
+.travail{display:grid;grid-template-columns:288px 1fr;gap:40px;
+ align-items:start;padding:36px 0 70px}
+.panneau{position:sticky;top:78px;border:1px solid var(--trait);
+ background:var(--noir2);max-height:calc(100vh - 108px);overflow:auto}
+.pan-h{padding:16px 20px;border-bottom:1px solid var(--trait);
+ display:flex;align-items:center;gap:10px}
+.pan-h h2{font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+ margin:0;color:var(--doux);font-weight:600}
+.pan-h button{margin-left:auto;background:none;border:0;color:var(--or);
+ font:inherit;font-size:12px;cursor:pointer;text-decoration:underline}
+.grp-f{padding:18px 20px;border-bottom:1px solid var(--trait)}
+.grp-f:last-child{border-bottom:0}
+.grp-f h3{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+ color:var(--faible);margin:0 0 12px;font-weight:600}
+.grp-f label{display:flex;align-items:center;gap:9px;padding:4px 0;
+ font-size:14px;cursor:pointer;color:var(--doux)}
+.grp-f label:hover{color:var(--texte)}
+.grp-f input[type=checkbox]{accent-color:var(--or);width:15px;height:15px;
+ flex:none}
+.grp-f .n{margin-left:auto;font-size:12px;color:var(--faible);
+ font-variant-numeric:tabular-nums}
+.champ,select.champ{width:100%;background:var(--noir3);color:var(--texte);
+ border:1px solid var(--trait);padding:10px 12px;font:inherit;font-size:14px;
+ border-radius:0}
+.champ:focus{outline:1px solid var(--or);outline-offset:-1px}
+.champ::placeholder{color:var(--faible)}
+
+/* ------------------------------------------------------------- resultats */
+.barre{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+ padding-bottom:22px;border-bottom:1px solid var(--trait);margin-bottom:26px}
+.compte{font-family:var(--serif);font-size:19px}
+.compte b{color:var(--or);font-weight:400}
+.tri{margin-left:auto;display:flex;align-items:center;gap:9px;
+ font-size:13px;color:var(--faible)}
+.tri select{background:var(--noir2);color:var(--texte);
+ border:1px solid var(--trait);padding:7px 10px;font:inherit;font-size:13px}
+.vide{border:1px dashed var(--trait2);padding:48px 26px;text-align:center;
+ color:var(--doux)}
+.puce{display:inline-flex;align-items:center;gap:8px;background:var(--or-doux);
+ border:1px solid rgba(200,169,106,.32);color:var(--texte);
+ padding:5px 10px;font-size:12.5px}
+.puce button{background:none;border:0;color:var(--or);cursor:pointer;
+ font:inherit;line-height:1;padding:0}
+
+/* ---------------------------------------------------------------- la fiche */
+.voile{position:fixed;inset:0;background:rgba(6,6,7,.82);z-index:90;
+ display:none}
+.voile[data-ouvert=oui]{display:block}
+.fiche{position:fixed;top:0;right:0;bottom:0;width:min(660px,100%);
+ background:var(--noir);border-left:1px solid var(--trait);z-index:91;
+ overflow:auto;display:none}
+.fiche[data-ouvert=oui]{display:block}
+.fiche-h{position:sticky;top:0;background:var(--noir);z-index:2;
+ border-bottom:1px solid var(--trait);padding:20px 30px;display:flex;
+ align-items:flex-start;gap:16px}
+.fiche-h h2{font-family:var(--serif);font-weight:400;font-size:28px;
+ line-height:1.15;margin:0}
+.fiche-h .grp{font-size:12.5px;color:var(--faible);margin:5px 0 0}
+.fermer{margin-left:auto;background:none;border:1px solid var(--trait);
+ color:var(--doux);width:36px;height:36px;cursor:pointer;font-size:17px;
+ flex:none;line-height:1}
+.fermer:hover{border-color:var(--trait2);color:var(--texte)}
+.fiche-c{padding:26px 30px 60px}
+.bloc{margin-bottom:32px}
+.bloc h3{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--or);margin:0 0 14px;font-weight:600}
+.lignes{display:grid;grid-template-columns:1fr auto;gap:9px 20px;
+ font-size:14.5px}
+.lignes .k{color:var(--doux)}
+.lignes .v{text-align:right;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--faible);line-height:1.55;
+ border-left:2px solid var(--trait2);padding-left:14px;margin-top:14px}
+.etiq{display:inline-block;font-size:12px;border:1px solid var(--trait);
+ padding:4px 10px;margin:0 6px 6px 0;color:var(--doux)}
+.etiq.on{border-color:rgba(200,169,106,.4);color:var(--texte);
+ background:var(--or-doux)}
+
+/* ----------------------------------------------------------- le formulaire */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form .large{grid-column:1/-1}
+.form label{display:block;font-size:11.5px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--faible);margin-bottom:7px}
+.form textarea{min-height:110px;resize:vertical}
+.oblig{color:var(--or)}
+.recu{border:1px solid rgba(200,169,106,.4);background:var(--or-doux);
+ padding:20px;font-size:14.5px}
+
+/* --------------------------------------------------------------- pied */
+footer{padding:56px 0 70px;color:var(--faible);font-size:13.5px}
+footer a{color:var(--doux)}
+.avert{border:1px dashed var(--trait2);padding:16px 18px;margin-bottom:28px;
+ color:var(--doux);font-size:13.5px}
+.liens-sites{display:flex;gap:26px;flex-wrap:wrap;margin-top:18px}
+
+/* -------------------------------------------------------------- reglages */
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;gap:30px}
+  .hero-img{order:-1}
+  .manifeste{grid-template-columns:1fr;gap:0}
+  .travail{grid-template-columns:1fr;gap:26px}
+  .panneau{position:static;max-height:none}
+}
+@media(max-width:620px){
+  .enveloppe,.haut-in,.hero-txt{padding-left:20px;padding-right:20px}
+  section{padding:52px 0}
+  .haut-in{gap:14px;flex-wrap:wrap}
+  .marque{font-size:17px}
+  .ph-marque{font-size:9px;padding:1px 5px}
+  .nav{gap:15px;order:3;width:100%;margin-left:0;
+   border-top:1px solid var(--trait);padding-top:10px}
+  .nav a{font-size:11.5px}
+  .langue{margin-left:auto}
+  .hero{padding:34px 0 48px}
+  .fiche-h,.fiche-c{padding-left:20px;padding-right:20px}
+  .form{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<header class="haut"><div class="haut-in">
+  <a class="marque" href="index.html"><span class="mot">Maisons de <b>Prestige</b></span><span
+     class="ph-marque" data-fr="nom a definir" data-en="name to be set"
+     >nom a definir</span></a>
+  <nav class="nav">
+    <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+    <a href="collection.html" aria-current="page" data-fr="La collection" data-en="The collection">La collection</a>
+    <a href="collection.html#proposer" data-fr="Proposer un actif" data-en="Submit an asset">Proposer un actif</a>
+    <a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/hotellerie.html" data-fr="Hotellerie de chaine" data-en="Chain hotels">Hotellerie de chaine</a>
+  </nav>
+  <div class="langue">
+    <button type="button" data-l="fr" aria-pressed="true">FR</button>
+    <button type="button" data-l="en" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+<section style="padding:52px 0 0;border-bottom:0"><div class="enveloppe">
+  <p class="eyebrow" data-fr="La collection" data-en="The collection">La collection</p>
+  <h1 style="font-size:clamp(30px,4.6vw,46px)" data-fr="Vingt-cinq maisons, et ce qu&#x27;elles demandent" data-en="Twenty-five brands, and what they ask for">Vingt-cinq maisons, et ce qu&#x27;elles demandent</h1>
+  <p class="chapo" data-fr="Le filtre le plus utile est le premier : la taille de votre actif. Une maison qui accepte de vingt-quatre a soixante cles ne prendra pas un hotel de deux cents chambres, et l&#x27;inverse est tout aussi vrai." data-en="The most useful filter is the first one: the size of your asset. A brand that accepts twenty-four to sixty keys will not take a two-hundred-room hotel, and the reverse is just as true.">Le filtre le plus utile est le premier : la taille de votre actif. Une maison qui accepte de vingt-quatre a soixante cles ne prendra pas un hotel de deux cents chambres, et l&#x27;inverse est tout aussi vrai.</p>
+</div></section>
+
+<div class="enveloppe"><div class="travail">
+  <aside class="panneau" id="panneau">
+    <div class="pan-h"><h2 id="h-filtres">Filtres</h2>
+      <button type="button" id="raz">Tout effacer</button></div>
+    <div class="grp-f">
+      <h3 id="h-rech">Recherche</h3>
+      <input class="champ" id="q" type="search" placeholder="Nom, groupe, pays">
+    </div>
+    <div class="grp-f">
+      <h3 id="h-taille">Taille de mon actif</h3>
+      <select class="champ" id="taille"></select>
+      <p style="font-size:12.5px;color:var(--faible);margin:10px 0 0"
+         id="aide-taille"></p>
+    </div>
+    <div class="grp-f"><h3 id="h-dist">Distinction</h3>
+      <div id="f-dists"></div></div>
+    <div class="grp-f"><h3 id="h-mode">Mode d'exploitation</h3>
+      <div id="f-modes"></div></div>
+    <div class="grp-f"><h3 id="h-tranche">Investissement par cle</h3>
+      <div id="f-tranches"></div></div>
+    <div class="grp-f"><h3 id="h-region">Region d'origine</h3>
+      <div id="f-regions"></div></div>
+    <div class="grp-f"><h3 id="h-opt">Particularites</h3>
+      <div id="f-options"></div></div>
+  </aside>
+
+  <main>
+    <div class="barre">
+      <div class="compte" id="compte"></div>
+      <div id="puces"></div>
+      <div class="tri"><label for="tri" id="l-tri"></label>
+        <select id="tri"></select></div>
+    </div>
+    <div class="grille" id="grille"></div>
+    <div class="vide" id="vide" hidden></div>
+  </main>
+</div></div>
+
+<section id="proposer"><div class="enveloppe">
+  <p class="eyebrow" data-fr="Proprietaires" data-en="Owners">Proprietaires</p>
+  <h2 class="titre-sec" data-fr="Proposer un actif" data-en="Submit an asset">Proposer un actif</h2>
+  <p class="intro-sec" data-fr="Demonstration : le formulaire ne part nulle part. Il montre ce qu&#x27;un service developpement demande en premier, et dans quel ordre." data-en="Demonstration: the form goes nowhere. It shows what a development team asks for first, and in what order.">Demonstration : le formulaire ne part nulle part. Il montre ce qu&#x27;un service developpement demande en premier, et dans quel ordre.</p>
+  <form class="form" id="dossier" novalidate>
+    <div><label for="d-nom" id="l-nom"></label>
+      <input class="champ" id="d-nom" name="nom" required></div>
+    <div><label for="d-tel" id="l-tel"></label>
+      <input class="champ" id="d-tel" name="tel"></div>
+    <div><label for="d-ville" id="l-ville"></label>
+      <input class="champ" id="d-ville" name="ville" required></div>
+    <div><label for="d-cles" id="l-cles"></label>
+      <input class="champ" id="d-cles" name="cles" type="number" min="1"
+             max="2000" required></div>
+    <div><label for="d-annee" id="l-annee"></label>
+      <input class="champ" id="d-annee" name="annee" type="number"
+             min="1600" max="2030"></div>
+    <div><label for="d-reno" id="l-reno"></label>
+      <input class="champ" id="d-reno" name="reno" type="number"
+             min="1900" max="2030"></div>
+    <div><label for="d-mode" id="l-mode"></label>
+      <select class="champ" id="d-mode" name="mode"></select></div>
+    <div><label for="d-dist" id="l-dist"></label>
+      <select class="champ" id="d-dist" name="dist"></select></div>
+    <div class="large"><label for="d-mot" id="l-mot"></label>
+      <textarea class="champ" id="d-mot" name="mot"></textarea></div>
+    <div class="large"><button class="bouton" type="submit"
+      id="b-envoi"></button></div>
+    <div class="large recu" id="recu" hidden></div>
+  </form>
+</div></section>
+
+<div class="voile" id="voile" data-ouvert="non"></div>
+<aside class="fiche" id="fiche" data-ouvert="non" role="dialog"
+       aria-modal="true" aria-labelledby="fiche-nom"></aside>
+<footer><div class="enveloppe">
+  <div class="avert" data-fr="DEMONSTRATION. Les groupes, les maisons et tous les chiffres de ce site sont fictifs. Ils servent a montrer la structure et le fonctionnement, pas a decrire une offre reelle. Aucun groupe hotelier existant n&#x27;est nomme ni represente ici." data-en="DEMONSTRATION. The groups, houses and every figure on this site are fictional. They exist to show the structure and the mechanics, not to describe a real offer. No existing hotel group is named or represented here.">DEMONSTRATION. Les groupes, les maisons et tous les chiffres de ce site sont fictifs. Ils servent a montrer la structure et le fonctionnement, pas a decrire une offre reelle. Aucun groupe hotelier existant n&#x27;est nomme ni represente ici.</div>
+  <div data-fr="Site separe de l&#x27;annuaire de franchises et de la section hotellerie de chaine : autre promesse, autres unites de mesure, autre charte." data-en="A site separate from the franchise directory and the chain-hotel section: a different promise, different units, a different look.">Site separe de l&#x27;annuaire de franchises et de la section hotellerie de chaine : autre promesse, autres unites de mesure, autre charte.</div>
+  <div class="liens-sites">
+    <a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/hotellerie.html" data-fr="Hotellerie de chaine"
+       data-en="Chain hotels">Hotellerie de chaine</a>
+    <a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/" data-fr="Annuaire des franchises"
+       data-en="Franchise directory">Annuaire des franchises</a>
+  </div>
+</div></footer>
+<script>
+(function(){
+  var L = 'fr';
+  function pose(l){
+    L = l;
+    document.documentElement.lang = l;
+    var n = document.querySelectorAll('[data-fr][data-en]');
+    for (var i=0;i<n.length;i++) n[i].innerHTML = n[i].getAttribute('data-'+l);
+    var b = document.querySelectorAll('.langue button');
+    for (var j=0;j<b.length;j++)
+      b[j].setAttribute('aria-pressed',
+                        b[j].getAttribute('data-l') === l ? 'true' : 'false');
+    try { localStorage.setItem('mdp-langue', l); } catch(e){}
+    if (window.surLangue) window.surLangue(l);
+  }
+  window.langue = function(){ return L; };
+  window.poseLangue = pose;
+  document.addEventListener('click', function(ev){
+    var b = ev.target.closest && ev.target.closest('.langue button');
+    if (b) pose(b.getAttribute('data-l'));
+  });
+  var m = null;
+  try { m = localStorage.getItem('mdp-langue'); } catch(e){}
+  pose(m === 'en' ? 'en' : 'fr');
+})();
+
+
+var D = null, FI = [], L = 'fr';
+var F = {q:'', taille:'', dists:[], modes:[], tranches:[], regions:[],
+         options:[]};
+var TRI = 'nom';
+
+/* --------------------------------------------------------------- i18n --- */
+/* Les cles sont prefixees PAR EMPLOI, pas par page : `fi_mode` (la fiche) et
+   `fo_mode` (le formulaire) ne peuvent pas se percuter. Deux cles identiques
+   dans un objet JavaScript ne provoquent aucune erreur — la seconde gagne en
+   silence, et on cherche une faute de traduction pendant une heure. */
+var T = {
+ fr:{
+  h_filtres:'Filtres', raz:'Tout effacer', h_rech:'Recherche',
+  h_taille:'Taille de mon actif', h_dist:'Distinction',
+  h_mode:"Mode d'exploitation", h_tranche:'Investissement par cle',
+  h_region:"Region d'origine", h_opt:'Particularites',
+  t_toutes:'Toutes tailles',
+  aide_taille:"La maison doit accepter CETTE taille : le nombre saisi doit tomber dans sa fourchette, pas seulement la depasser.",
+  o_residences:'Residences de marque', o_spa:'Spa', o_key:'Apport du groupe possible',
+  compte_un:'%(n)d maison', compte_n:'%(n)d maisons',
+  sur:'sur %(t)d', l_tri:'Trier par',
+  tri_nom:'Nom', tri_cle:'Investissement par cle', tri_nuitee:'Prix moyen',
+  tri_reseau:'Taille du reseau', tri_cles:'Taille acceptee',
+  vide:"Aucune maison ne repond a ces criteres. Elargissez la taille ou le mode d'exploitation.",
+  c_taille:'Taille acceptee', c_mode:'Mode principal', c_nuitee:'Prix moyen',
+  fi_apercu:"En un coup d'oeil", fi_argent:"L'argent", fi_contrat:'Le contrat',
+  fi_maison:'La maison', fi_reseau:'Le reseau', fi_presta:'Ce que le groupe apporte',
+  fi_pays:'Presente dans', fi_modes:"Modes d'exploitation proposes",
+  d_dist:'Distinction', d_groupe:'Groupe', d_origine:'Origine',
+  d_cles:'Taille acceptee', d_invest:'Investissement par cle',
+  d_projet:'Cout du projet', d_nuitee:'Prix moyen de la nuitee',
+  d_base:'Honoraires de base', d_incit:"Honoraires d'incitation",
+  d_redev:'Redevance', d_key:'Apport du groupe (par cle)',
+  d_tech:'Services techniques (par cle)', d_preouv:'Pre-ouverture (par cle)',
+  d_duree:'Duree du contrat', d_montee:'Montee en puissance',
+  d_reno:'Cycle de renovation', d_suites:'Part de suites',
+  d_tables:'Points de restauration', d_spa:'Spa', d_res:'Residences de marque',
+  d_cre:'Construction', d_ges:'Premiere exploitation sous la marque',
+  d_maisons:'Adresses exploitees', d_total:'Cles au total',
+  d_moy:'Taille moyenne', d_aucun:'Non propose', d_oui:'Oui', d_non:'Non',
+  u_ans:'ans', u_mois:'mois', u_cles:'cles', u_m2:'m2', u_nuit:'la nuit',
+  n_base:"Les honoraires de base portent sur le chiffre d'affaires TOTAL, les honoraires d'incitation sur le RESULTAT BRUT D'EXPLOITATION, la redevance sur le chiffre d'affaires HEBERGEMENT seul. Ces pourcentages ne s'additionnent pas.",
+  n_key:"L'apport du groupe est une concession de negociation, pas un droit : il se discute contrat par contrat.",
+  fermer:'Fermer',
+  fo_nom:'Votre nom', fo_tel:'Telephone', fo_ville:"Ville et pays de l'actif",
+  fo_cles:'Nombre de cles', fo_annee:'Annee de construction',
+  fo_reno:'Derniere renovation', fo_mode:'Mode envisage',
+  fo_dist:'Positionnement vise', fo_mot:'Ce qu\'il faut savoir de la maison',
+  fo_envoi:'Envoyer le dossier', fo_indif:'Sans preference',
+  fo_manque:'Il manque : %(l)s',
+  fo_recu:"Demonstration : rien n'a ete envoye. Sur le site reel, ce dossier partirait au service developpement. Recapitulatif : %(r)s",
+  fo_obl:'obligatoire'
+ },
+ en:{
+  h_filtres:'Filters', raz:'Clear all', h_rech:'Search',
+  h_taille:'My asset size', h_dist:'Distinction',
+  h_mode:'Operating structure', h_tranche:'Investment per key',
+  h_region:'Region of origin', h_opt:'Particulars',
+  t_toutes:'Any size',
+  aide_taille:'The brand must accept THIS size: the number must fall inside its range, not merely exceed it.',
+  o_residences:'Branded residences', o_spa:'Spa', o_key:'Group contribution possible',
+  compte_un:'%(n)d brand', compte_n:'%(n)d brands',
+  sur:'of %(t)d', l_tri:'Sort by',
+  tri_nom:'Name', tri_cle:'Investment per key', tri_nuitee:'Average rate',
+  tri_reseau:'Network size', tri_cles:'Accepted size',
+  vide:'No brand matches these criteria. Widen the size or the operating structure.',
+  c_taille:'Accepted size', c_mode:'Main structure', c_nuitee:'Average rate',
+  fi_apercu:'At a glance', fi_argent:'The money', fi_contrat:'The contract',
+  fi_maison:'The house', fi_reseau:'The network', fi_presta:'What the group brings',
+  fi_pays:'Present in', fi_modes:'Structures offered',
+  d_dist:'Distinction', d_groupe:'Group', d_origine:'Origin',
+  d_cles:'Accepted size', d_invest:'Investment per key',
+  d_projet:'Project cost', d_nuitee:'Average daily rate',
+  d_base:'Base fee', d_incit:'Incentive fee',
+  d_redev:'Royalty', d_key:'Group contribution (per key)',
+  d_tech:'Technical services (per key)', d_preouv:'Pre-opening (per key)',
+  d_duree:'Contract term', d_montee:'Ramp-up',
+  d_reno:'Refurbishment cycle', d_suites:'Suites share',
+  d_tables:'Dining outlets', d_spa:'Spa', d_res:'Branded residences',
+  d_cre:'Built', d_ges:'First operated under the brand',
+  d_maisons:'Operating addresses', d_total:'Keys in total',
+  d_moy:'Average size', d_aucun:'Not offered', d_oui:'Yes', d_non:'No',
+  u_ans:'years', u_mois:'months', u_cles:'keys', u_m2:'sqm', u_nuit:'per night',
+  n_base:'The base fee applies to TOTAL revenue, the incentive fee to GROSS OPERATING PROFIT, the royalty to ROOMS revenue only. These percentages do not add up.',
+  n_key:'A group contribution is a negotiating concession, not an entitlement: it is discussed contract by contract.',
+  fermer:'Close',
+  fo_nom:'Your name', fo_tel:'Telephone', fo_ville:'City and country of the asset',
+  fo_cles:'Number of keys', fo_annee:'Year built',
+  fo_reno:'Last refurbishment', fo_mode:'Structure considered',
+  fo_dist:'Intended positioning', fo_mot:'What we should know about the house',
+  fo_envoi:'Send the file', fo_indif:'No preference',
+  fo_manque:'Missing: %(l)s',
+  fo_recu:'Demonstration: nothing was sent. On the live site this file would reach the development team. Summary: %(r)s',
+  fo_obl:'required'
+ }
+};
+function t(k){ return T[L][k]; }
+function loc(){ return L === 'fr' ? 'fr-CA' : 'en-CA'; }
+
+var FMT = {};
+function argent(v, dev){
+  var k = L + dev;
+  if (!FMT[k]) FMT[k] = new Intl.NumberFormat(loc(),
+    {style:'currency', currency:dev, maximumFractionDigits:0});
+  return FMT[k].format(v);
+}
+function nb(v){ return v.toLocaleString(loc()); }
+/* Une annee, un identifiant, un port : ce sont des DESIGNATIONS, pas des
+   quantites. Passees dans nb(), « 1986 » s'affiche « 1 986 ». */
+function an(v){ return String(v); }
+function pct(v){
+  var s = v.toLocaleString(loc(), {minimumFractionDigits:1,
+                                   maximumFractionDigits:1});
+  return L === 'fr' ? s + ' %' : s + '%';
+}
+function ech(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+                  .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function lib(liste, cle){
+  for (var i=0;i<liste.length;i++) if (liste[i].cle === cle) return liste[i][L];
+  return cle;
+}
+function fmt(s, o){
+  return s.replace(/%\((\w+)\)[ds]/g, function(_, k){ return o[k]; });
+}
+function pliage(s){
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+}
+
+/* ------------------------------------------------------------ filtrage --- */
+/* `sauf` sert aux compteurs : le nombre affiche a cote d'une case est le
+   nombre de maisons qui resteraient SI on la cochait, les autres filtres en
+   place. Calcule sur le resultat final, il afficherait 0 partout. */
+function passe(f, sauf){
+  if (F.q){
+    var mots = pliage(F.q).split(/\s+/).filter(Boolean);
+    var champ = pliage(f.nom + ' ' + f.groupe + ' ' + f.resume.fr + ' ' +
+                       f.resume.en + ' ' + lib(D.distinctions, f.distinction) +
+                       ' ' + lib(D.pays, f.pays_origine));
+    for (var i=0;i<mots.length;i++) if (champ.indexOf(mots[i]) < 0) return false;
+  }
+  /* La taille demande « qui prend un actif de N cles » : N doit tomber DANS
+     la fourchette acceptee, pas au-dessus d'un minimum. */
+  if (sauf !== 'taille' && F.taille){
+    var n = parseInt(F.taille, 10);
+    if (n < f.cles.min || n > f.cles.max) return false;
+  }
+  if (sauf !== 'dists' && F.dists.length &&
+      F.dists.indexOf(f.distinction) < 0) return false;
+  if (sauf !== 'modes' && F.modes.length){
+    var ok = false;
+    for (var a=0;a<F.modes.length;a++)
+      if (f.modes.indexOf(F.modes[a]) >= 0) ok = true;
+    if (!ok) return false;
+  }
+  if (sauf !== 'tranches' && F.tranches.length &&
+      F.tranches.indexOf(f.investissement_cle.tranche) < 0) return false;
+  if (sauf !== 'regions' && F.regions.length &&
+      F.regions.indexOf(f.region) < 0) return false;
+  if (sauf !== 'options' && F.options.length){
+    for (var b=0;b<F.options.length;b++){
+      var o = F.options[b];
+      if (o === 'residences' && !f.residences_de_marque) return false;
+      if (o === 'spa' && !f.spa_m2) return false;
+      if (o === 'key' && !f.key_money_cle) return false;
+    }
+  }
+  return true;
+}
+function resultat(){ return FI.filter(function(f){ return passe(f, null); }); }
+function combien(groupe, valeur){
+  var sauv = F[groupe];
+  F[groupe] = (groupe === 'taille') ? valeur : [valeur];
+  var n = FI.filter(function(f){ return passe(f, null); }).length;
+  F[groupe] = sauv;
+  return n;
+}
+
+/* --------------------------------------------------------------- tri --- */
+var TRIS = [
+  ['nom', function(a,b){ return a.nom.localeCompare(b.nom); }],
+  ['cle', function(a,b){ return b.investissement_cle.eur_bas -
+                                a.investissement_cle.eur_bas; }],
+  ['nuitee', function(a,b){ return b.nuitee.haut - a.nuitee.haut; }],
+  ['reseau', function(a,b){ return b.reseau.cles - a.reseau.cles; }],
+  ['cles', function(a,b){ return a.cles.min - b.cles.min; }]
+];
+function comparateur(){
+  for (var i=0;i<TRIS.length;i++) if (TRIS[i][0] === TRI) return TRIS[i][1];
+  return TRIS[0][1];
+}
+
+/* ------------------------------------------------------------- rendu --- */
+function carte(f){
+  var d = lib(D.distinctions, f.distinction);
+  return '<button class="carte" type="button" data-id="' + ech(f.id) + '">'
+   + '<figure class="cadre" data-img="images/' + ech(f.id) + '.jpg"'
+   +   ' data-ratio="4/3"><div class="ph" style="aspect-ratio:4/3">'
+   +   '<b>' + ech(L === 'fr' ? 'Photo a deposer' : 'Photo to be supplied')
+   +   '</b><span>images/' + ech(f.id) + '.jpg</span></div></figure>'
+   + '<div class="carte-corps">'
+   + '<div class="dist">' + ech(d) + '</div>'
+   + '<h3>' + ech(f.nom) + '</h3>'
+   + '<p class="grp">' + ech(f.groupe) + '</p>'
+   + '<p class="res">' + ech(f.resume[L]) + '</p>'
+   + '<dl>'
+   +  '<dt>' + ech(t('c_taille')) + '</dt><dd>' + nb(f.cles.min) + '&ndash;'
+   +  nb(f.cles.max) + '</dd>'
+   +  '<dt>' + ech(t('c_nuitee')) + '</dt><dd>'
+   +  argent(f.nuitee.bas, f.devise) + '&ndash;'
+   +  argent(f.nuitee.haut, f.devise) + '</dd>'
+   +  '<dt>' + ech(t('c_mode')) + '</dt><dd>'
+   +  ech(lib(D.modes, f.modes[0])) + '</dd>'
+   + '</dl></div></button>';
+}
+
+function dessiner(){
+  var res = resultat().sort(comparateur());
+  document.getElementById('grille').innerHTML =
+    res.map(carte).join('');
+  var v = document.getElementById('vide');
+  v.hidden = res.length > 0;
+  v.textContent = t('vide');
+  var c = document.getElementById('compte');
+  c.innerHTML = '<b>' + fmt(res.length === 1 ? t('compte_un') : t('compte_n'),
+                            {n:nb(res.length)}) + '</b> '
+              + ech(fmt(t('sur'), {t:nb(FI.length)}));
+  compteurs();
+  puces();
+}
+
+function compteurs(){
+  var g = [['dists','f-dists'],['modes','f-modes'],['tranches','f-tranches'],
+           ['regions','f-regions'],['options','f-options']];
+  for (var i=0;i<g.length;i++){
+    var boites = document.querySelectorAll(
+      '#' + g[i][1] + ' input[type=checkbox]');
+    for (var j=0;j<boites.length;j++){
+      var n = combien(g[i][0], boites[j].getAttribute('data-v'));
+      boites[j].parentNode.querySelector('.n').textContent = nb(n);
+    }
+  }
+}
+
+function puces(){
+  var p = [];
+  function add(cle, txt, groupe, valeur){
+    p.push('<span class="puce">' + ech(txt) + '<button type="button" '
+      + 'data-g="' + groupe + '" data-v="' + ech(valeur) + '" '
+      + 'aria-label="' + ech(t('raz')) + '">&times;</button></span>');
+  }
+  if (F.taille) add('taille', nb(parseInt(F.taille,10)) + ' ' + t('u_cles'),
+                    'taille', F.taille);
+  F.dists.forEach(function(v){ add(v, lib(D.distinctions,v),'dists',v); });
+  F.modes.forEach(function(v){ add(v, lib(D.modes,v),'modes',v); });
+  F.tranches.forEach(function(v){ add(v, lib(D.tranches,v),'tranches',v); });
+  F.regions.forEach(function(v){ add(v, lib(D.regions,v),'regions',v); });
+  F.options.forEach(function(v){ add(v, t('o_'+v),'options',v); });
+  document.getElementById('puces').innerHTML = p.join(' ');
+}
+
+/* -------------------------------------------------------------- fiche --- */
+function ligne(k, v){
+  return '<div class="k">' + ech(k) + '</div><div class="v">' + v + '</div>';
+}
+function ouvrir(id){
+  var f = null;
+  for (var i=0;i<FI.length;i++) if (FI[i].id === id) f = FI[i];
+  if (!f) return;
+  var dev = f.devise, o = [];
+
+  o.push('<div class="fiche-h"><div><h2 id="fiche-nom">' + ech(f.nom)
+        + '</h2><p class="grp">' + ech(f.groupe) + ' &middot; '
+        + ech(lib(D.distinctions, f.distinction)) + '</p></div>'
+        + '<button class="fermer" type="button" id="x" aria-label="'
+        + ech(t('fermer')) + '">&times;</button></div>');
+  o.push('<div class="fiche-c">');
+  o.push('<figure class="cadre" data-img="images/' + ech(f.id) + '.jpg" '
+        + 'data-ratio="16/9"><div class="ph" style="aspect-ratio:16/9"><b>'
+        + ech(L === 'fr' ? 'Photo a deposer' : 'Photo to be supplied')
+        + '</b><span>images/' + ech(f.id) + '.jpg</span></div></figure>');
+  o.push('<p style="color:var(--doux);margin:22px 0 30px">'
+        + ech(f.resume[L]) + '</p>');
+
+  o.push('<div class="bloc"><h3>' + ech(t('fi_apercu')) + '</h3>'
+   + '<div class="lignes">'
+   + ligne(t('d_origine'), ech(lib(D.pays, f.pays_origine)))
+   + ligne(t('d_cles'), nb(f.cles.min) + '&ndash;' + nb(f.cles.max) + ' '
+           + ech(t('u_cles')))
+   + ligne(t('d_nuitee'), argent(f.nuitee.bas, dev) + '&ndash;'
+           + argent(f.nuitee.haut, dev) + ' <span style="color:var(--faible)">'
+           + ech(t('u_nuit')) + '</span>')
+   + ligne(t('d_cre'), an(f.annee_creation))
+   + ligne(t('d_ges'), an(f.annee_premiere_gestion))
+   + '</div></div>');
+
+  var arg = ligne(t('d_invest'),
+        argent(f.investissement_cle.bas, dev) + '&ndash;'
+        + argent(f.investissement_cle.haut, dev))
+   + ligne(t('d_projet'), argent(f.projet.bas, dev) + '&ndash;'
+           + argent(f.projet.haut, dev));
+  if (f.honoraires.base !== null)
+    arg += ligne(t('d_base'), pct(f.honoraires.base))
+         + ligne(t('d_incit'), pct(f.honoraires.incitation));
+  arg += ligne(t('d_redev'),
+    f.redevance === null ? '<span style="color:var(--faible)">'
+      + ech(t('d_aucun')) + '</span>' : pct(f.redevance));
+  arg += ligne(t('d_tech'), argent(f.services_techniques_cle, dev))
+       + ligne(t('d_preouv'), argent(f.preouverture_cle, dev))
+       + ligne(t('d_key'), f.key_money_cle
+           ? argent(f.key_money_cle, dev)
+           : '<span style="color:var(--faible)">' + ech(t('d_non')) + '</span>');
+  o.push('<div class="bloc"><h3>' + ech(t('fi_argent')) + '</h3>'
+        + '<div class="lignes">' + arg + '</div>'
+        + '<p class="note">' + ech(t('n_base')) + '</p>'
+        + (f.key_money_cle ? '<p class="note">' + ech(t('n_key')) + '</p>' : '')
+        + '</div>');
+
+  var md = f.modes.map(function(m){
+    return '<span class="etiq on">' + ech(lib(D.modes, m)) + '</span>'; })
+    .join('');
+  o.push('<div class="bloc"><h3>' + ech(t('fi_contrat')) + '</h3>'
+   + md
+   + '<div class="lignes" style="margin-top:16px">'
+   + ligne(t('d_duree'), nb(f.duree_contrat) + ' ' + ech(t('u_ans')))
+   + ligne(t('d_montee'), nb(f.montee_en_puissance_mois) + ' '
+           + ech(t('u_mois')))
+   + ligne(t('d_reno'), nb(f.renovation_ans) + ' ' + ech(t('u_ans')))
+   + '</div></div>');
+
+  o.push('<div class="bloc"><h3>' + ech(t('fi_maison')) + '</h3>'
+   + '<div class="lignes">'
+   + ligne(t('d_suites'), nb(f.suites_pct) + (L === 'fr' ? ' %' : '%'))
+   + ligne(t('d_tables'), nb(f.tables))
+   + ligne(t('d_spa'), f.spa_m2 ? nb(f.spa_m2) + ' ' + ech(t('u_m2'))
+           : ech(t('d_non')))
+   + ligne(t('d_res'), f.residences_de_marque ? ech(t('d_oui'))
+           : ech(t('d_non')))
+   + '</div></div>');
+
+  o.push('<div class="bloc"><h3>' + ech(t('fi_reseau')) + '</h3>'
+   + '<div class="lignes">'
+   + ligne(t('d_maisons'), nb(f.reseau.maisons))
+   + ligne(t('d_total'), nb(f.reseau.cles) + ' ' + ech(t('u_cles')))
+   + ligne(t('d_moy'), nb(f.reseau.taille_moyenne) + ' ' + ech(t('u_cles')))
+   + '</div>'
+   + '<h3 style="margin-top:24px">' + ech(t('fi_pays')) + '</h3>'
+   + f.pays.map(function(p){
+       return '<span class="etiq">' + ech(lib(D.pays, p)) + '</span>'; }).join('')
+   + '</div>');
+
+  o.push('<div class="bloc"><h3>' + ech(t('fi_presta')) + '</h3>'
+   + D.prestations.map(function(p){
+       var on = f.prestations.indexOf(p.cle) >= 0;
+       return '<span class="etiq' + (on ? ' on' : '') + '">'
+            + (on ? '' : '&minus; ') + ech(p[L]) + '</span>'; }).join(''));
+  o.push('</div>');
+
+  o.push('</div>');
+  var fic = document.getElementById('fiche');
+  fic.innerHTML = o.join('');
+  fic.setAttribute('data-ouvert','oui');
+  document.getElementById('voile').setAttribute('data-ouvert','oui');
+  document.body.style.overflow = 'hidden';
+  fic.scrollTop = 0;
+  document.getElementById('x').focus();
+  OUVERTE = id;
+  if (location.hash.slice(1) !== id) history.replaceState(null,'','#'+id);
+}
+var OUVERTE = null;
+function fermer(){
+  document.getElementById('fiche').setAttribute('data-ouvert','non');
+  document.getElementById('voile').setAttribute('data-ouvert','non');
+  document.body.style.overflow = '';
+  OUVERTE = null;
+  if (location.hash) history.replaceState(null,'',location.pathname);
+}
+
+/* ---------------------------------------------------------- formulaire --- */
+function dossier(ev){
+  ev.preventDefault();
+  var d = {
+    nom: document.getElementById('d-nom').value.trim(),
+    ville: document.getElementById('d-ville').value.trim(),
+    cles: document.getElementById('d-cles').value.trim()
+  };
+  var manque = [];
+  if (!d.nom) manque.push(t('fo_nom'));
+  if (!d.ville) manque.push(t('fo_ville'));
+  if (!d.cles) manque.push(t('fo_cles'));
+  var r = document.getElementById('recu');
+  r.hidden = false;
+  if (manque.length){
+    r.textContent = fmt(t('fo_manque'), {l:manque.join(', ')});
+    return;
+  }
+  var mode = document.getElementById('d-mode');
+  var dist = document.getElementById('d-dist');
+  var parts = [d.nom, d.ville, nb(parseInt(d.cles,10)) + ' ' + t('u_cles'),
+               mode.options[mode.selectedIndex].text,
+               dist.options[dist.selectedIndex].text];
+  r.textContent = fmt(t('fo_recu'), {r:parts.join(' — ')});
+}
+
+/* ------------------------------------------------------------ montage --- */
+function cases(hote, liste, groupe, etiquette){
+  var h = document.getElementById(hote);
+  h.innerHTML = liste.map(function(x){
+    return '<label><input type="checkbox" data-g="' + groupe + '" data-v="'
+     + ech(x.cle) + '"><span class="lb">' + ech(etiquette(x))
+     + '</span><span class="n"></span></label>';
+  }).join('');
+}
+
+function retitrer(){
+  var m = {'h-filtres':'h_filtres','raz':'raz','h-rech':'h_rech',
+           'h-taille':'h_taille','h-dist':'h_dist','h-mode':'h_mode',
+           'h-tranche':'h_tranche','h-region':'h_region','h-opt':'h_opt',
+           'aide-taille':'aide_taille','l-tri':'l_tri',
+           'l-nom':'fo_nom','l-tel':'fo_tel','l-ville':'fo_ville',
+           'l-cles':'fo_cles','l-annee':'fo_annee','l-reno':'fo_reno',
+           'l-mode':'fo_mode','l-dist':'fo_dist','l-mot':'fo_mot',
+           'b-envoi':'fo_envoi'};
+  for (var id in m){
+    var n = document.getElementById(id);
+    if (n) n.textContent = t(m[id]);
+  }
+  document.getElementById('q').placeholder =
+    L === 'fr' ? 'Nom, groupe, pays' : 'Name, group, country';
+
+  var lbs = document.querySelectorAll('.grp-f label .lb');
+  var src = [];
+  D.distinctions.forEach(function(x){ src.push(x[L]); });
+  D.modes.forEach(function(x){ src.push(x[L]); });
+  D.tranches.forEach(function(x){ src.push(x[L]); });
+  D.regions.forEach(function(x){ src.push(x[L]); });
+  ['residences','spa','key'].forEach(function(x){ src.push(t('o_'+x)); });
+  for (var i=0;i<lbs.length && i<src.length;i++) lbs[i].textContent = src[i];
+
+  var tl = document.getElementById('taille'), gard = tl.value;
+  tl.innerHTML = '<option value="">' + ech(t('t_toutes')) + '</option>'
+   + D.tailles.map(function(n){
+       return '<option value="' + n + '">' + nb(n) + ' ' + ech(t('u_cles'))
+            + '</option>'; }).join('');
+  tl.value = gard;
+
+  var tr = document.getElementById('tri'), gtr = tr.value;
+  tr.innerHTML = TRIS.map(function(x){
+    return '<option value="' + x[0] + '">' + ech(t('tri_'+x[0]))
+         + '</option>'; }).join('');
+  tr.value = gtr || TRI;
+
+  var fm = document.getElementById('d-mode');
+  fm.innerHTML = '<option value="">' + ech(t('fo_indif')) + '</option>'
+   + D.modes.map(function(x){
+       return '<option value="' + ech(x.cle) + '">' + ech(x[L])
+            + '</option>'; }).join('');
+  var fd = document.getElementById('d-dist');
+  fd.innerHTML = '<option value="">' + ech(t('fo_indif')) + '</option>'
+   + D.distinctions.map(function(x){
+       return '<option value="' + ech(x.cle) + '">' + ech(x[L])
+            + '</option>'; }).join('');
+}
+
+window.surLangue = function(l){
+  L = l;
+  if (!D) return;
+  retitrer();
+  dessiner();
+  if (OUVERTE) ouvrir(OUVERTE);
+};
+
+function demarrer(d){
+  D = d; FI = D.fiches;
+  L = window.langue ? window.langue() : 'fr';
+  cases('f-dists', D.distinctions, 'dists', function(x){ return x[L]; });
+  cases('f-modes', D.modes, 'modes', function(x){ return x[L]; });
+  cases('f-tranches', D.tranches, 'tranches', function(x){ return x[L]; });
+  cases('f-regions', D.regions, 'regions', function(x){ return x[L]; });
+  document.getElementById('f-options').innerHTML =
+    ['residences','spa','key'].map(function(c){
+      return '<label><input type="checkbox" data-g="options" data-v="' + c
+       + '"><span class="lb"></span><span class="n"></span></label>';
+    }).join('');
+  retitrer();
+
+  document.addEventListener('change', function(ev){
+    var i = ev.target;
+    if (i.type === 'checkbox' && i.getAttribute('data-g')){
+      var g = i.getAttribute('data-g'), v = i.getAttribute('data-v');
+      if (i.checked){ if (F[g].indexOf(v) < 0) F[g].push(v); }
+      else F[g] = F[g].filter(function(x){ return x !== v; });
+      dessiner();
+    } else if (i.id === 'taille'){ F.taille = i.value; dessiner(); }
+    else if (i.id === 'tri'){ TRI = i.value; dessiner(); }
+  });
+  var q = document.getElementById('q'), minuteur = null;
+  q.addEventListener('input', function(){
+    clearTimeout(minuteur);
+    minuteur = setTimeout(function(){ F.q = q.value; dessiner(); }, 140);
+  });
+  document.getElementById('raz').addEventListener('click', function(){
+    F = {q:'', taille:'', dists:[], modes:[], tranches:[], regions:[],
+         options:[]};
+    q.value = ''; document.getElementById('taille').value = '';
+    var b = document.querySelectorAll('.grp-f input[type=checkbox]');
+    for (var i=0;i<b.length;i++) b[i].checked = false;
+    dessiner();
+  });
+  document.addEventListener('click', function(ev){
+    var c = ev.target.closest('.carte');
+    if (c){ ouvrir(c.getAttribute('data-id')); return; }
+    if (ev.target.id === 'x' || ev.target.id === 'voile'){ fermer(); return; }
+    var p = ev.target.closest('.puce button');
+    if (p){
+      var g = p.getAttribute('data-g'), v = p.getAttribute('data-v');
+      if (g === 'taille'){ F.taille = '';
+        document.getElementById('taille').value = ''; }
+      else {
+        F[g] = F[g].filter(function(x){ return x !== v; });
+        var bo = document.querySelector('.grp-f input[data-g="' + g
+                  + '"][data-v="' + v + '"]');
+        if (bo) bo.checked = false;
+      }
+      dessiner();
+    }
+  });
+  document.addEventListener('keydown', function(ev){
+    if (ev.key === 'Escape' && OUVERTE) fermer();
+  });
+  /* Un fragment qui change DANS la page ne recharge pas le document : sans
+     cet ecouteur, un lien vers #identifiant depuis la page elle-meme se
+     contente de faire defiler. */
+  window.addEventListener('hashchange', function(){
+    var h = location.hash.slice(1);
+    if (!h){ if (OUVERTE) fermer(); return; }
+    if (h !== OUVERTE) ouvrir(h);
+  });
+  document.getElementById('dossier').addEventListener('submit', dossier);
+
+  dessiner();
+  var h = location.hash.slice(1);
+  if (h) ouvrir(h);
+}
+
+fetch('prestige.json')
+  .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(demarrer)
+  .catch(function(err){
+    document.getElementById('grille').innerHTML =
+      '<div class="vide">prestige.json : ' + ech(err.message) + '</div>';
+  });
+</script>
+</body>
+</html>

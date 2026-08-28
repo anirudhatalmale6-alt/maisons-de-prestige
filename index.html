@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maisons de Prestige — les enseignes qui prennent une adresse d&#x27;exception en gestion</title>
+<meta name="description" content="Collection de demonstration : les maisons hotelieres de prestige, leurs modes d&#x27;exploitation et leurs conditions.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --noir:#0b0b0c;      /* le fond */
+  --noir2:#121214;     /* surface posee dessus */
+  --noir3:#191A1D;     /* surface au-dessus encore */
+  --trait:rgba(236,231,223,.13);
+  --trait2:rgba(236,231,223,.26);
+  --texte:#ece7df;
+  --doux:#a8a199;      /* texte secondaire */
+  --faible:#7d766e;    /* legendes */
+  --or:#c8a96a;        /* l'unique accent */
+  --or-doux:rgba(200,169,106,.14);
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,
+          'Times New Roman',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--noir);color:var(--texte);font-family:var(--sans);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%}
+.enveloppe{max-width:1220px;margin:0 auto;padding:0 34px}
+
+/* ---------------------------------------------------------------- en-tete */
+.haut{position:sticky;top:0;z-index:60;background:rgba(11,11,12,.86);
+ backdrop-filter:blur(14px);border-bottom:1px solid var(--trait)}
+.haut-in{display:flex;align-items:center;gap:26px;
+ max-width:1220px;margin:0 auto;padding:16px 34px}
+.marque{font-family:var(--serif);font-size:21px;letter-spacing:.10em;
+ text-transform:uppercase;text-decoration:none;white-space:nowrap;
+ display:flex;align-items:baseline;gap:9px}
+.marque .mot{white-space:nowrap}
+.marque b{color:var(--or);font-weight:400}
+.ph-marque{font-family:var(--sans);font-size:9.5px;letter-spacing:.06em;
+ text-transform:none;color:var(--or);border:1px dashed var(--trait2);
+ border-radius:4px;padding:1px 6px;white-space:nowrap}
+.nav{display:flex;gap:22px;margin-left:auto;align-items:center}
+.nav a{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;
+ text-decoration:none;color:var(--doux);padding:6px 0;
+ border-bottom:1px solid transparent}
+.nav a:hover,.nav a[aria-current]{color:var(--texte);border-bottom-color:var(--or)}
+.langue{display:flex;border:1px solid var(--trait);border-radius:2px;
+ overflow:hidden}
+.langue button{background:none;border:0;color:var(--doux);cursor:pointer;
+ font:inherit;font-size:11.5px;letter-spacing:.12em;padding:6px 11px}
+.langue button[aria-pressed=true]{background:var(--or);color:#17130c}
+
+/* ------------------------------------------------------------------- hero */
+/* Le titre n'est PAS pose par-dessus l'image. Une superposition tient tant
+   que le texte est plus court que la photo ; le jour ou il fait cinq lignes,
+   il remonte sous l'en-tete colle et se fait couper. Deux colonnes ne
+   peuvent pas se chevaucher. */
+.hero{padding:58px 0 76px;border-bottom:1px solid var(--trait)}
+.hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;
+ align-items:center}
+.surtitre{font-size:11.5px;letter-spacing:.30em;text-transform:uppercase;
+ color:var(--or);margin:0 0 18px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(31px,4.4vw,54px);
+ line-height:1.1;letter-spacing:-.01em;margin:0 0 20px;max-width:17ch}
+.chapo{font-size:18px;color:var(--doux);max-width:56ch;margin:0}
+
+/* ---------------------------------------------------------------- sections */
+section{padding:78px 0;border-bottom:1px solid var(--trait)}
+.titre-sec{font-family:var(--serif);font-weight:400;
+ font-size:clamp(25px,3.4vw,38px);line-height:1.15;margin:0 0 16px;
+ max-width:22ch}
+.intro-sec{color:var(--doux);max-width:62ch;margin:0 0 40px}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+ color:var(--or);margin:0 0 14px}
+
+/* ------------------------------------------------------------ le manifeste */
+.manifeste{display:grid;grid-template-columns:1fr 1fr;gap:52px}
+.manifeste p{margin:0 0 18px;color:var(--doux)}
+.manifeste p:first-child{font-family:var(--serif);font-size:21px;
+ line-height:1.5;color:var(--texte)}
+.manifeste strong{color:var(--texte);font-weight:600}
+
+/* ---------------------------------------------------------- les paliers */
+.paliers{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+ gap:1px;background:var(--trait);border:1px solid var(--trait)}
+.palier{background:var(--noir);padding:26px 22px}
+.palier h3{font-family:var(--serif);font-weight:400;font-size:20px;
+ margin:16px 0 8px}
+.palier p{margin:0;font-size:14px;color:var(--doux);line-height:1.55}
+.palier .n{font-size:11px;letter-spacing:.22em;color:var(--or)}
+
+/* ------------------------------------------------------------- les chiffres */
+.chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+ gap:34px}
+.chiffre{border-top:1px solid var(--or);padding-top:16px}
+.chiffre b{display:block;font-family:var(--serif);font-weight:400;
+ font-size:clamp(30px,4.2vw,46px);line-height:1}
+.chiffre span{display:block;margin-top:8px;font-size:12px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--faible)}
+
+/* ------------------------------------------------------------- les modes */
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+ gap:26px}
+.mode{border:1px solid var(--trait);padding:28px 24px;background:var(--noir2)}
+.mode h3{font-family:var(--serif);font-weight:400;font-size:22px;margin:0 0 6px}
+.mode .base{font-size:12px;letter-spacing:.05em;color:var(--or);
+ margin:0 0 14px;line-height:1.5}
+.mode p{margin:0;color:var(--doux);font-size:14.5px}
+
+/* -------------------------------------------------------------- les cartes */
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));
+ gap:26px}
+.carte{background:var(--noir2);border:1px solid var(--trait);
+ display:flex;flex-direction:column;text-align:left;padding:0;color:inherit;
+ font:inherit;cursor:pointer;transition:border-color .18s,transform .18s;
+ text-decoration:none}
+.carte *{text-decoration:none}
+.carte:hover{border-color:var(--trait2);transform:translateY(-2px)}
+.carte-corps{padding:22px 22px 24px;display:flex;flex-direction:column;
+ flex:1}
+.carte .dist{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--or);margin-bottom:11px}
+.carte h3{font-family:var(--serif);font-weight:400;font-size:23px;
+ line-height:1.15;margin:0 0 4px}
+.carte .grp{font-size:12.5px;color:var(--faible);margin:0 0 13px}
+.carte .res{font-size:14px;color:var(--doux);margin:0 0 18px;flex:1}
+.carte dl{margin:0;padding-top:15px;border-top:1px solid var(--trait);
+ display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px}
+.carte dt{color:var(--faible)}
+.carte dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ----------------------------------------------------------------- images */
+.cadre{position:relative;display:block;margin:0;overflow:hidden;
+ background:var(--noir3)}
+.cadre .ph{display:flex;flex-direction:column;align-items:center;
+ justify-content:center;gap:6px;width:100%;
+ border:1px dashed var(--trait2);color:var(--faible);text-align:center;
+ padding:16px}
+.cadre .ph b{font-weight:600;font-size:12px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--doux)}
+.cadre .ph span{font-size:11.5px;word-break:break-all;max-width:90%}
+
+/* ---------------------------------------------------------------- le ruban */
+.ruban{background:var(--noir2)}
+.ruban-in{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.ruban-txt{flex:1;min-width:280px}
+.bouton{display:inline-block;background:var(--or);color:#17130c;
+ text-decoration:none;font-size:12.5px;letter-spacing:.16em;
+ text-transform:uppercase;padding:15px 30px;border:0;cursor:pointer;
+ font-family:var(--sans);font-weight:600}
+.bouton:hover{background:#d8bc82}
+.bouton.fantome{background:none;color:var(--texte);
+ border:1px solid var(--trait2)}
+.bouton.fantome:hover{background:rgba(236,231,223,.06)}
+
+/* ------------------------------------------------------------------ filtres */
+.travail{display:grid;grid-template-columns:288px 1fr;gap:40px;
+ align-items:start;padding:36px 0 70px}
+.panneau{position:sticky;top:78px;border:1px solid var(--trait);
+ background:var(--noir2);max-height:calc(100vh - 108px);overflow:auto}
+.pan-h{padding:16px 20px;border-bottom:1px solid var(--trait);
+ display:flex;align-items:center;gap:10px}
+.pan-h h2{font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+ margin:0;color:var(--doux);font-weight:600}
+.pan-h button{margin-left:auto;background:none;border:0;color:var(--or);
+ font:inherit;font-size:12px;cursor:pointer;text-decoration:underline}
+.grp-f{padding:18px 20px;border-bottom:1px solid var(--trait)}
+.grp-f:last-child{border-bottom:0}
+.grp-f h3{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+ color:var(--faible);margin:0 0 12px;font-weight:600}
+.grp-f label{display:flex;align-items:center;gap:9px;padding:4px 0;
+ font-size:14px;cursor:pointer;color:var(--doux)}
+.grp-f label:hover{color:var(--texte)}
+.grp-f input[type=checkbox]{accent-color:var(--or);width:15px;height:15px;
+ flex:none}
+.grp-f .n{margin-left:auto;font-size:12px;color:var(--faible);
+ font-variant-numeric:tabular-nums}
+.champ,select.champ{width:100%;background:var(--noir3);color:var(--texte);
+ border:1px solid var(--trait);padding:10px 12px;font:inherit;font-size:14px;
+ border-radius:0}
+.champ:focus{outline:1px solid var(--or);outline-offset:-1px}
+.champ::placeholder{color:var(--faible)}
+
+/* ------------------------------------------------------------- resultats */
+.barre{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+ padding-bottom:22px;border-bottom:1px solid var(--trait);margin-bottom:26px}
+.compte{font-family:var(--serif);font-size:19px}
+.compte b{color:var(--or);font-weight:400}
+.tri{margin-left:auto;display:flex;align-items:center;gap:9px;
+ font-size:13px;color:var(--faible)}
+.tri select{background:var(--noir2);color:var(--texte);
+ border:1px solid var(--trait);padding:7px 10px;font:inherit;font-size:13px}
+.vide{border:1px dashed var(--trait2);padding:48px 26px;text-align:center;
+ color:var(--doux)}
+.puce{display:inline-flex;align-items:center;gap:8px;background:var(--or-doux);
+ border:1px solid rgba(200,169,106,.32);color:var(--texte);
+ padding:5px 10px;font-size:12.5px}
+.puce button{background:none;border:0;color:var(--or);cursor:pointer;
+ font:inherit;line-height:1;padding:0}
+
+/* ---------------------------------------------------------------- la fiche */
+.voile{position:fixed;inset:0;background:rgba(6,6,7,.82);z-index:90;
+ display:none}
+.voile[data-ouvert=oui]{display:block}
+.fiche{position:fixed;top:0;right:0;bottom:0;width:min(660px,100%);
+ background:var(--noir);border-left:1px solid var(--trait);z-index:91;
+ overflow:auto;display:none}
+.fiche[data-ouvert=oui]{display:block}
+.fiche-h{position:sticky;top:0;background:var(--noir);z-index:2;
+ border-bottom:1px solid var(--trait);padding:20px 30px;display:flex;
+ align-items:flex-start;gap:16px}
+.fiche-h h2{font-family:var(--serif);font-weight:400;font-size:28px;
+ line-height:1.15;margin:0}
+.fiche-h .grp{font-size:12.5px;color:var(--faible);margin:5px 0 0}
+.fermer{margin-left:auto;background:none;border:1px solid var(--trait);
+ color:var(--doux);width:36px;height:36px;cursor:pointer;font-size:17px;
+ flex:none;line-height:1}
+.fermer:hover{border-color:var(--trait2);color:var(--texte)}
+.fiche-c{padding:26px 30px 60px}
+.bloc{margin-bottom:32px}
+.bloc h3{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--or);margin:0 0 14px;font-weight:600}
+.lignes{display:grid;grid-template-columns:1fr auto;gap:9px 20px;
+ font-size:14.5px}
+.lignes .k{color:var(--doux)}
+.lignes .v{text-align:right;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--faible);line-height:1.55;
+ border-left:2px solid var(--trait2);padding-left:14px;margin-top:14px}
+.etiq{display:inline-block;font-size:12px;border:1px solid var(--trait);
+ padding:4px 10px;margin:0 6px 6px 0;color:var(--doux)}
+.etiq.on{border-color:rgba(200,169,106,.4);color:var(--texte);
+ background:var(--or-doux)}
+
+/* ----------------------------------------------------------- le formulaire */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form .large{grid-column:1/-1}
+.form label{display:block;font-size:11.5px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--faible);margin-bottom:7px}
+.form textarea{min-height:110px;resize:vertical}
+.oblig{color:var(--or)}
+.recu{border:1px solid rgba(200,169,106,.4);background:var(--or-doux);
+ padding:20px;font-size:14.5px}
+
+/* --------------------------------------------------------------- pied */
+footer{padding:56px 0 70px;color:var(--faible);font-size:13.5px}
+footer a{color:var(--doux)}
+.avert{border:1px dashed var(--trait2);padding:16px 18px;margin-bottom:28px;
+ color:var(--doux);font-size:13.5px}
+.liens-sites{display:flex;gap:26px;flex-wrap:wrap;margin-top:18px}
+
+/* -------------------------------------------------------------- reglages */
+@media(max-width:900px){
+  .hero-in{grid-template-columns:1fr;gap:30px}
+  .hero-img{order:-1}
+  .manifeste{grid-template-columns:1fr;gap:0}
+  .travail{grid-template-columns:1fr;gap:26px}
+  .panneau{position:static;max-height:none}
+}
+@media(max-width:620px){
+  .enveloppe,.haut-in,.hero-txt{padding-left:20px;padding-right:20px}
+  section{padding:52px 0}
+  .haut-in{gap:14px;flex-wrap:wrap}
+  .marque{font-size:17px}
+  .ph-marque{font-size:9px;padding:1px 5px}
+  .nav{gap:15px;order:3;width:100%;margin-left:0;
+   border-top:1px solid var(--trait);padding-top:10px}
+  .nav a{font-size:11.5px}
+  .langue{margin-left:auto}
+  .hero{padding:34px 0 48px}
+  .fiche-h,.fiche-c{padding-left:20px;padding-right:20px}
+  .form{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<header class="haut"><div class="haut-in">
+  <a class="marque" href="index.html"><span class="mot">Maisons de <b>Prestige</b></span><span
+     class="ph-marque" data-fr="nom a definir" data-en="name to be set"
+     >nom a definir</span></a>
+  <nav class="nav">
+    <a href="index.html" aria-current="page" data-fr="Accueil" data-en="Home">Accueil</a>
+    <a href="collection.html" data-fr="La collection" data-en="The collection">La collection</a>
+    <a href="collection.html#proposer" data-fr="Proposer un actif" data-en="Submit an asset">Proposer un actif</a>
+    <a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/hotellerie.html" data-fr="Hotellerie de chaine" data-en="Chain hotels">Hotellerie de chaine</a>
+  </nav>
+  <div class="langue">
+    <button type="button" data-l="fr" aria-pressed="true">FR</button>
+    <button type="button" data-l="en" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+<div class="hero"><div class="enveloppe"><div class="hero-in"><div class="hero-txt">
+<p class="surtitre" data-fr="Cinq etoiles et au-dessus" data-en="Five stars and above">Cinq etoiles et au-dessus</p>
+<h1 data-fr="Les enseignes qui prennent en gestion une adresse d&#x27;exception." data-en="The brands that take an exceptional address under management.">Les enseignes qui prennent en gestion une adresse d'exception.</h1>
+<p class="chapo" data-fr="Un palace ne se franchise pas comme un hotel d&#x27;autoroute. Cette collection reunit les maisons de prestige et dit, pour chacune, la seule chose qui interesse un proprietaire : a quelles conditions elle prend votre actif." data-en="A palace is not franchised like a highway hotel. This collection brings together the prestige brands and states, for each of them, the only thing an owner needs: on what terms it will take your asset.">Un palace ne se franchise pas comme un hotel d'autoroute. Cette collection reunit les maisons de prestige et dit, pour chacune, la seule chose qui interesse un proprietaire : a quelles conditions elle prend votre actif.</p>
+</div><div class="hero-img">
+<figure class="cadre" data-img="images/accueil-bandeau.jpg" data-ratio="4/5"><div class="ph" style="aspect-ratio:4/5"><b data-fr="Photo d&#x27;accueil a deposer" data-en="Homepage photo to be supplied">Photo d&#x27;accueil a deposer</b><span>images/accueil-bandeau.jpg</span></div></figure>
+</div></div></div></div>
+<section><div class="enveloppe">
+<p class="eyebrow" data-fr="Pourquoi un site a part" data-en="Why a separate site">Pourquoi un site a part</p>
+<div class="manifeste"><div>
+<p data-fr="Au sommet de la gamme, le metier cesse de se mesurer dans les memes unites que le reste de l&#x27;hotellerie." data-en="At the top of the market, the trade stops being measured in the same units as the rest of the hotel business.">Au sommet de la gamme, le metier cesse de se mesurer dans les memes unites que le reste de l'hotellerie.</p>
+<p data-fr="Ailleurs, on achete une franchise et on paie une redevance. Ici, le proprietaire garde ses murs et confie l&#x27;exploitation au groupe. La remuneration devient un couple : des &lt;strong&gt;honoraires de base&lt;/strong&gt; assis sur le chiffre d&#x27;affaires total, et des &lt;strong&gt;honoraires d&#x27;incitation&lt;/strong&gt; assis sur le resultat. Le premier tombe meme quand la maison perd de l&#x27;argent. Le second non. Toute la negociation est la." data-en="Elsewhere you buy a franchise and pay a royalty. Here the owner keeps the building and hands operations to the group. The fee becomes a pair: a &lt;strong&gt;base fee&lt;/strong&gt; on total revenue, and an &lt;strong&gt;incentive fee&lt;/strong&gt; on profit. The first is paid even when the house loses money. The second is not. That is the whole negotiation.">Ailleurs, on achete une franchise et on paie une redevance. Ici, le proprietaire garde ses murs et confie l'exploitation au groupe. La remuneration devient un couple : des <strong>honoraires de base</strong> assis sur le chiffre d'affaires total, et des <strong>honoraires d'incitation</strong> assis sur le resultat. Le premier tombe meme quand la maison perd de l'argent. Le second non. Toute la negociation est la.</p>
+</div><div>
+<p data-fr="Et le sens de l&#x27;argent peut s&#x27;inverser : pour emporter un contrat, un groupe &lt;strong&gt;apporte&lt;/strong&gt; parfois du capital au proprietaire. Un franchiseur ne fait jamais cela." data-en="And the money can flow the other way: to win a contract, a group sometimes &lt;strong&gt;contributes&lt;/strong&gt; capital to the owner. A franchisor never does that.">Et le sens de l'argent peut s'inverser : pour emporter un contrat, un groupe <strong>apporte</strong> parfois du capital au proprietaire. Un franchiseur ne fait jamais cela.</p>
+<p data-fr="Mises dans la meme liste que les enseignes de chaine, ces maisons laissaient les trois quarts des colonnes vides, et le filtre par redevance comparait un pourcentage de chiffre d&#x27;affaires a un pourcentage de resultat. Ce ne sont pas les memes nombres. D&#x27;ou ce site." data-en="Placed in the same list as chain brands, these houses left three quarters of the columns empty, and the royalty filter compared a percentage of revenue with a percentage of profit. Those are not the same numbers. Hence this site.">Mises dans la meme liste que les enseignes de chaine, ces maisons laissaient les trois quarts des colonnes vides, et le filtre par redevance comparait un pourcentage de chiffre d'affaires a un pourcentage de resultat. Ce ne sont pas les memes nombres. D'ou ce site.</p>
+</div></div></div></section>
+<section><div class="enveloppe"><div class="chiffres">
+<div class="chiffre"><b data-fr="25" data-en="25">25</b><span data-fr="Maisons de prestige" data-en="Prestige brands">Maisons de prestige</span></div>
+<div class="chiffre"><b data-fr="9" data-en="9">9</b><span data-fr="Groupes" data-en="Groups">Groupes</span></div>
+<div class="chiffre"><b data-fr="22" data-en="22">22</b><span data-fr="Pays d&#x27;implantation" data-en="Countries present">Pays d'implantation</span></div>
+<div class="chiffre"><b data-fr="1 015" data-en="1,015">1 015</b><span data-fr="Adresses exploitees" data-en="Operating addresses">Adresses exploitees</span></div>
+<div class="chiffre"><b data-fr="140 774" data-en="140,774">140 774</b><span data-fr="Cles au total" data-en="Keys in total">Cles au total</span></div>
+</div></div></section>
+<section><div class="enveloppe">
+<p class="eyebrow" data-fr="Cinq facons d&#x27;etre une grande maison" data-en="Five ways to be a great house">Cinq facons d'etre une grande maison</p>
+<h2 class="titre-sec" data-fr="Deux adresses cinq etoiles de tailles opposees ne se gerent pas de la meme facon." data-en="Two five-star addresses of opposite sizes are not run the same way.">Deux adresses cinq etoiles de tailles opposees ne se gerent pas de la meme facon.</h2>
+<p class="intro-sec" data-fr="Un palace urbain de deux cents cles vit de ses banquets et de sa restauration. Une maison de quarante cles vit de son prix moyen. Le filtre de la collection part de la." data-en="A two-hundred-key city palace lives on banqueting and dining. A forty-key house lives on its average rate. The collection&#x27;s filter starts there.">Un palace urbain de deux cents cles vit de ses banquets et de sa restauration. Une maison de quarante cles vit de son prix moyen. Le filtre de la collection part de la.</p>
+<div class="paliers">
+<div class="palier">
+<div class="n">01</div>
+<h3 data-fr="Palace urbain" data-en="City palace">Palace urbain</h3>
+<p data-fr="Grande adresse de centre-ville : restauration signee, salons de reception, spa complet, service continu." data-en="Landmark city address: signature dining, function salons, full spa, round-the-clock service.">Grande adresse de centre-ville : restauration signee, salons de reception, spa complet, service continu.</p>
+<p style="margin-top:12px;color:var(--or);font-size:13px" data-fr="7 maisons" data-en="7 brands">7 maisons</p>
+</div>
+<div class="palier">
+<div class="n">02</div>
+<h3 data-fr="Maison de luxe" data-en="Luxury house">Maison de luxe</h3>
+<p data-fr="Petite unite, moins de cent cles, ou le personnel connait le nom du client avant son arrivee." data-en="A small property, under one hundred keys, where the staff know the guest&#x27;s name before arrival.">Petite unite, moins de cent cles, ou le personnel connait le nom du client avant son arrivee.</p>
+<p style="margin-top:12px;color:var(--or);font-size:13px" data-fr="4 maisons" data-en="4 brands">4 maisons</p>
+</div>
+<div class="palier">
+<div class="n">03</div>
+<h3 data-fr="Resort de prestige" data-en="Prestige resort">Resort de prestige</h3>
+<p data-fr="Bord de mer ou montagne, sejours longs, plusieurs tables, activites et clientele familiale haut de gamme." data-en="Seaside or mountain, longer stays, several restaurants, activities and high-end family clientele.">Bord de mer ou montagne, sejours longs, plusieurs tables, activites et clientele familiale haut de gamme.</p>
+<p style="margin-top:12px;color:var(--or);font-size:13px" data-fr="6 maisons" data-en="6 brands">6 maisons</p>
+</div>
+<div class="palier">
+<div class="n">04</div>
+<h3 data-fr="Domaine et demeure historique" data-en="Estate and historic house">Domaine et demeure historique</h3>
+<p data-fr="Chateau, manoir ou domaine viticole converti : le batiment est le produit, et il impose ses contraintes." data-en="A converted chateau, manor or wine estate: the building is the product, and it sets the constraints.">Chateau, manoir ou domaine viticole converti : le batiment est le produit, et il impose ses contraintes.</p>
+<p style="margin-top:12px;color:var(--or);font-size:13px" data-fr="4 maisons" data-en="4 brands">4 maisons</p>
+</div>
+<div class="palier">
+<div class="n">05</div>
+<h3 data-fr="Lifestyle de prestige" data-en="Prestige lifestyle">Lifestyle de prestige</h3>
+<p data-fr="Adresse d&#x27;auteur : architecture signee, bar de destination, programmation culturelle, clientele plus jeune." data-en="A design-led address: named architecture, destination bar, cultural programme, younger clientele.">Adresse d&#x27;auteur : architecture signee, bar de destination, programmation culturelle, clientele plus jeune.</p>
+<p style="margin-top:12px;color:var(--or);font-size:13px" data-fr="4 maisons" data-en="4 brands">4 maisons</p>
+</div>
+</div></div></section>
+<section><div class="enveloppe">
+<p class="eyebrow" data-fr="Les quatre facons de signer" data-en="Four ways to sign">Les quatre facons de signer</p>
+<h2 class="titre-sec" data-fr="Ce que vous signez decide de ce que vous payez, et sur quelle assiette." data-en="What you sign decides what you pay, and on what base.">Ce que vous signez decide de ce que vous payez, et sur quelle assiette.</h2>
+<div class="modes">
+<div class="mode">
+<h3 data-fr="Contrat de gestion" data-en="Management contract">Contrat de gestion</h3>
+<p class="base" data-fr="Honoraires de base sur le chiffre d&#x27;affaires total, plus honoraires d&#x27;incitation sur le resultat brut d&#x27;exploitation" data-en="Base fee on total revenue, plus incentive fee on gross operating profit">Honoraires de base sur le chiffre d&#x27;affaires total, plus honoraires d&#x27;incitation sur le resultat brut d&#x27;exploitation</p>
+<p data-fr="Le groupe exploite la maison pour le compte du proprietaire : il recrute le directeur general, engage les equipes, tient les comptes d&#x27;exploitation. Le proprietaire porte l&#x27;actif et le resultat." data-en="The group operates the house on the owner&#x27;s behalf: it appoints the general manager, hires the teams and runs the operating accounts. The owner carries the asset and the result.">Le groupe exploite la maison pour le compte du proprietaire : il recrute le directeur general, engage les equipes, tient les comptes d&#x27;exploitation. Le proprietaire porte l&#x27;actif et le resultat.</p>
+<p style="margin-top:16px;color:var(--faible);font-size:13px" data-fr="23 maisons proposent ce mode" data-en="23 brands offer this">23 maisons proposent ce mode</p>
+</div>
+<div class="mode">
+<h3 data-fr="Affiliation a une collection" data-en="Collection affiliation">Affiliation a une collection</h3>
+<p class="base" data-fr="Redevance sur le chiffre d&#x27;affaires hebergement, plus frais de distribution" data-en="Royalty on rooms revenue, plus distribution fees">Redevance sur le chiffre d&#x27;affaires hebergement, plus frais de distribution</p>
+<p data-fr="La maison GARDE SON NOM et son equipe, et rejoint une collection qui lui apporte la distribution, la clientele fidelisee et la caution. C&#x27;est la porte d&#x27;entree des proprietaires independants." data-en="The house KEEPS ITS OWN NAME and team, and joins a collection that brings distribution, a loyal clientele and endorsement. This is the usual route for independent owners.">La maison GARDE SON NOM et son equipe, et rejoint une collection qui lui apporte la distribution, la clientele fidelisee et la caution. C&#x27;est la porte d&#x27;entree des proprietaires independants.</p>
+<p style="margin-top:16px;color:var(--faible);font-size:13px" data-fr="10 maisons proposent ce mode" data-en="10 brands offer this">10 maisons proposent ce mode</p>
+</div>
+<div class="mode">
+<h3 data-fr="Franchise de marque" data-en="Brand franchise">Franchise de marque</h3>
+<p class="base" data-fr="Redevance sur le chiffre d&#x27;affaires hebergement" data-en="Royalty on rooms revenue">Redevance sur le chiffre d&#x27;affaires hebergement</p>
+<p data-fr="Le proprietaire exploite lui-meme sous la marque. Rare a ce niveau de gamme, et reserve aux exploitants qui ont deja une direction hoteliere en propre." data-en="The owner operates under the brand. Rare at this level, and reserved for owners who already have their own hotel management.">Le proprietaire exploite lui-meme sous la marque. Rare a ce niveau de gamme, et reserve aux exploitants qui ont deja une direction hoteliere en propre.</p>
+<p style="margin-top:16px;color:var(--faible);font-size:13px" data-fr="6 maisons proposent ce mode" data-en="6 brands offer this">6 maisons proposent ce mode</p>
+</div>
+<div class="mode">
+<h3 data-fr="Bail" data-en="Lease">Bail</h3>
+<p class="base" data-fr="Loyer fixe ou indexe sur le chiffre d&#x27;affaires" data-en="Fixed or revenue-indexed rent">Loyer fixe ou indexe sur le chiffre d&#x27;affaires</p>
+<p data-fr="Le groupe loue les murs et exploite a ses risques. Le proprietaire percoit un loyer et sort de l&#x27;exploitation." data-en="The group leases the building and operates at its own risk. The owner receives a rent and steps out of operations.">Le groupe loue les murs et exploite a ses risques. Le proprietaire percoit un loyer et sort de l&#x27;exploitation.</p>
+<p style="margin-top:16px;color:var(--faible);font-size:13px" data-fr="2 maisons proposent ce mode" data-en="2 brands offer this">2 maisons proposent ce mode</p>
+</div>
+</div></div></section>
+<section><div class="enveloppe">
+<p class="eyebrow" data-fr="Un apercu" data-en="A glimpse">Un apercu</p>
+<h2 class="titre-sec" data-fr="Une maison par distinction." data-en="One house per distinction.">Une maison par distinction.</h2>
+<div class="grille">
+<a class="carte" href="collection.html#alvear-palacios">
+<figure class="cadre" data-img="images/alvear-palacios.jpg" data-ratio="4/3"><div class="ph" style="aspect-ratio:4/3"><b data-fr="Photo a deposer" data-en="Photo to be supplied">Photo a deposer</b><span>images/alvear-palacios.jpg</span></div></figure>
+<div class="carte-corps">
+<div class="dist" data-fr="Palace urbain" data-en="City palace">Palace urbain</div>
+<h3>Alvear Palacios</h3>
+<p class="grp">Grupo Alvear</p>
+<p class="res" data-fr="Palais andalous et madrilenes, patio, azulejos, spa arabe" data-en="Andalusian and Madrid palaces, patio, azulejos, hammam spa">Palais andalous et madrilenes, patio, azulejos, spa arabe</p>
+<dl><dt data-fr="Taille acceptee" data-en="Accepted size">Taille acceptee</dt><dd>118&ndash;260</dd>
+<dt data-fr="Mode principal" data-en="Main structure">Mode principal</dt><dd data-fr="Contrat de gestion" data-en="Management contract">Contrat de gestion</dd></dl>
+</div></a>
+<a class="carte" href="collection.html#aurelio-dimore">
+<figure class="cadre" data-img="images/aurelio-dimore.jpg" data-ratio="4/3"><div class="ph" style="aspect-ratio:4/3"><b data-fr="Photo a deposer" data-en="Photo to be supplied">Photo a deposer</b><span>images/aurelio-dimore.jpg</span></div></figure>
+<div class="carte-corps">
+<div class="dist" data-fr="Maison de luxe" data-en="Luxury house">Maison de luxe</div>
+<h3>Aurelio Dimore</h3>
+<p class="grp">Aurelio Collezione</p>
+<p class="res" data-fr="Demeures de quarante cles, service de maison, cuisine ouverte" data-en="Forty-key houses, house service, open kitchen">Demeures de quarante cles, service de maison, cuisine ouverte</p>
+<dl><dt data-fr="Taille acceptee" data-en="Accepted size">Taille acceptee</dt><dd>47&ndash;85</dd>
+<dt data-fr="Mode principal" data-en="Main structure">Mode principal</dt><dd data-fr="Affiliation a une collection" data-en="Collection affiliation">Affiliation a une collection</dd></dl>
+</div></a>
+<a class="carte" href="collection.html#cassiopee-rivages">
+<figure class="cadre" data-img="images/cassiopee-rivages.jpg" data-ratio="4/3"><div class="ph" style="aspect-ratio:4/3"><b data-fr="Photo a deposer" data-en="Photo to be supplied">Photo a deposer</b><span>images/cassiopee-rivages.jpg</span></div></figure>
+<div class="carte-corps">
+<div class="dist" data-fr="Resort de prestige" data-en="Prestige resort">Resort de prestige</div>
+<h3>Cassiopee Rivages</h3>
+<p class="grp">Cassiopee Hospitality</p>
+<p class="res" data-fr="Resorts de bord de mer, spa marin et ecole de voile" data-en="Seaside resorts with marine spa and sailing school">Resorts de bord de mer, spa marin et ecole de voile</p>
+<dl><dt data-fr="Taille acceptee" data-en="Accepted size">Taille acceptee</dt><dd>154&ndash;255</dd>
+<dt data-fr="Mode principal" data-en="Main structure">Mode principal</dt><dd data-fr="Contrat de gestion" data-en="Management contract">Contrat de gestion</dd></dl>
+</div></a>
+<a class="carte" href="collection.html#bergwald-almhof">
+<figure class="cadre" data-img="images/bergwald-almhof.jpg" data-ratio="4/3"><div class="ph" style="aspect-ratio:4/3"><b data-fr="Photo a deposer" data-en="Photo to be supplied">Photo a deposer</b><span>images/bergwald-almhof.jpg</span></div></figure>
+<div class="carte-corps">
+<div class="dist" data-fr="Domaine et demeure historique" data-en="Estate and historic house">Domaine et demeure historique</div>
+<h3>Bergwald Almhof</h3>
+<p class="grp">Bergwald Hotels</p>
+<p class="res" data-fr="Fermes d&#x27;alpage restaurees, ski aux pieds, table de montagne" data-en="Restored alpine farmhouses, ski-in ski-out, mountain kitchen">Fermes d&#x27;alpage restaurees, ski aux pieds, table de montagne</p>
+<dl><dt data-fr="Taille acceptee" data-en="Accepted size">Taille acceptee</dt><dd>36&ndash;61</dd>
+<dt data-fr="Mode principal" data-en="Main structure">Mode principal</dt><dd data-fr="Affiliation a une collection" data-en="Collection affiliation">Affiliation a une collection</dd></dl>
+</div></a>
+<a class="carte" href="collection.html#kestrel-row">
+<figure class="cadre" data-img="images/kestrel-row.jpg" data-ratio="4/3"><div class="ph" style="aspect-ratio:4/3"><b data-fr="Photo a deposer" data-en="Photo to be supplied">Photo a deposer</b><span>images/kestrel-row.jpg</span></div></figure>
+<div class="carte-corps">
+<div class="dist" data-fr="Lifestyle de prestige" data-en="Prestige lifestyle">Lifestyle de prestige</div>
+<h3>Kestrel Row</h3>
+<p class="grp">Kestrel Hospitality</p>
+<p class="res" data-fr="Maisons de ville georgiennes reunies, club de membres" data-en="Joined Georgian townhouses with a members&#x27; club">Maisons de ville georgiennes reunies, club de membres</p>
+<dl><dt data-fr="Taille acceptee" data-en="Accepted size">Taille acceptee</dt><dd>74&ndash;149</dd>
+<dt data-fr="Mode principal" data-en="Main structure">Mode principal</dt><dd data-fr="Contrat de gestion" data-en="Management contract">Contrat de gestion</dd></dl>
+</div></a>
+</div>
+<p style="margin-top:34px"><a class="bouton" href="collection.html" data-fr="Voir les 25 maisons" data-en="See all 25 brands">Voir les 25 maisons</a></p>
+</div></section>
+<section class="ruban"><div class="enveloppe"><div class="ruban-in">
+<div class="ruban-txt">
+<h2 class="titre-sec" data-fr="Vous possedez un actif de prestige" data-en="You own a prestige asset">Vous possedez un actif de prestige</h2>
+<p class="intro-sec" data-fr="Decrivez-le une fois. Le formulaire demande ce que les groupes demandent : le nombre de cles, l&#x27;annee de construction, la derniere renovation, et le mode que vous envisagez. Rien de plus." data-en="Describe it once. The form asks what the groups ask: the number of keys, the year built, the last refurbishment, and the structure you have in mind. Nothing more.">Decrivez-le une fois. Le formulaire demande ce que les groupes demandent : le nombre de cles, l'annee de construction, la derniere renovation, et le mode que vous envisagez. Rien de plus.</p>
+</div>
+<a class="bouton" href="collection.html#proposer" data-fr="Proposer un actif" data-en="Submit an asset">Proposer un actif</a>
+</div></div></section>
+<footer><div class="enveloppe">
+  <div class="avert" data-fr="DEMONSTRATION. Les groupes, les maisons et tous les chiffres de ce site sont fictifs. Ils servent a montrer la structure et le fonctionnement, pas a decrire une offre reelle. Aucun groupe hotelier existant n&#x27;est nomme ni represente ici." data-en="DEMONSTRATION. The groups, houses and every figure on this site are fictional. They exist to show the structure and the mechanics, not to describe a real offer. No existing hotel group is named or represented here.">DEMONSTRATION. Les groupes, les maisons et tous les chiffres de ce site sont fictifs. Ils servent a montrer la structure et le fonctionnement, pas a decrire une offre reelle. Aucun groupe hotelier existant n&#x27;est nomme ni represente ici.</div>
+  <div data-fr="Site separe de l&#x27;annuaire de franchises et de la section hotellerie de chaine : autre promesse, autres unites de mesure, autre charte." data-en="A site separate from the franchise directory and the chain-hotel section: a different promise, different units, a different look.">Site separe de l&#x27;annuaire de franchises et de la section hotellerie de chaine : autre promesse, autres unites de mesure, autre charte.</div>
+  <div class="liens-sites">
+    <a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/hotellerie.html" data-fr="Hotellerie de chaine"
+       data-en="Chain hotels">Hotellerie de chaine</a>
+    <a href="https://anirudhatalmale6-alt.github.io/annuaire-franchises-demo/" data-fr="Annuaire des franchises"
+       data-en="Franchise directory">Annuaire des franchises</a>
+  </div>
+</div></footer>
+<script>
+(function(){
+  var L = 'fr';
+  function pose(l){
+    L = l;
+    document.documentElement.lang = l;
+    var n = document.querySelectorAll('[data-fr][data-en]');
+    for (var i=0;i<n.length;i++) n[i].innerHTML = n[i].getAttribute('data-'+l);
+    var b = document.querySelectorAll('.langue button');
+    for (var j=0;j<b.length;j++)
+      b[j].setAttribute('aria-pressed',
+                        b[j].getAttribute('data-l') === l ? 'true' : 'false');
+    try { localStorage.setItem('mdp-langue', l); } catch(e){}
+    if (window.surLangue) window.surLangue(l);
+  }
+  window.langue = function(){ return L; };
+  window.poseLangue = pose;
+  document.addEventListener('click', function(ev){
+    var b = ev.target.closest && ev.target.closest('.langue button');
+    if (b) pose(b.getAttribute('data-l'));
+  });
+  var m = null;
+  try { m = localStorage.getItem('mdp-langue'); } catch(e){}
+  pose(m === 'en' ? 'en' : 'fr');
+})();
+</script>
+</body>
+</html>
