@@ -436,8 +436,20 @@ for src, w, h in photos:
 
 t('le fondateur est nomme', 'Hakim Adjaoudi' in ACC)
 t('son role est ecrit', 'Fondateur, JNCORP INC.' in ACC)
-t('sa devise est reprise telle qu\'il l\'a ecrite',
-  'Equilibrium, Equity and Light' in ACC)
+t('sa devise est reprise telle qu\'il l\'a formulee',
+  page_prestige.DEVISE_FR in ACC and page_prestige.DEVISE_EN in ACC,
+  page_prestige.DEVISE_FR)
+# La meme devise doit figurer, mot pour mot, sur le site de l'agence.
+_ag = os.path.join(os.path.dirname(ICI), 'agence', 'contenu.py')
+if os.path.isfile(_ag):
+    _src = open(_ag, encoding='utf-8').read()
+    t('la devise est identique a celle du site de l\'agence',
+      ("DEVISE_FR = '%s'" % page_prestige.DEVISE_FR) in _src
+      and ("DEVISE_EN = '%s'" % page_prestige.DEVISE_EN) in _src,
+      page_prestige.DEVISE_FR)
+else:
+    ignore('devise partagee avec le site de l\'agence',
+           'agence/contenu.py absent de cet arbre')
 # Aucune biographie inventee : le bloc porte un marqueur explicite a la
 # place du texte, et pas trois lignes plausibles sur une personne reelle.
 bloc = re.search(r'<section class="fondateur">.*?</section>', ACC, re.S)
@@ -447,7 +459,8 @@ if bloc:
     t('le texte du fondateur est marque comme a fournir, pas invente',
       'Texte du fondateur a fournir' in corps_f)
     phrases = [x for x in re.findall(r'>([^<>]{60,})<', corps_f)
-               if 'Equilibrium' not in x]
+               if page_prestige.DEVISE_FR not in x
+               and page_prestige.DEVISE_EN not in x]
     t('aucun paragraphe biographique n\'a ete redige a sa place',
       not phrases, [x[:70] for x in phrases[:2]])
 

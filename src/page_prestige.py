@@ -35,6 +35,16 @@ URL_HOTELLERIE = URL_ANNUAIRE + 'hotellerie.html'
 MARQUE_FR = 'Maisons de Prestige'
 MARQUE_EN = 'Maisons de Prestige'
 
+# LA DEVISE DU FONDATEUR. Elle est ecrite ici et, mot pour mot, dans
+# agence/contenu.py ; un controle compare les deux fichiers. Une devise qui
+# differe d'un site a l'autre n'est plus une devise, c'est deux slogans.
+#
+# Changee le 28 aout a sa demande (« change la devise / mes sites impacte le
+# monde »). Je la pose telle qu'il l'a formulee : une devise se choisit, elle
+# ne se redige pas a la place de quelqu'un.
+DEVISE_FR = 'Mes sites impactent le monde.'
+DEVISE_EN = 'My sites impact the world.'
+
 
 def e(x):
     return _H.escape(str(x), quote=True)
@@ -502,7 +512,8 @@ def page_accueil(D):
              % (e('Fondateur, JNCORP INC.'), e('Founder, JNCORP INC.'),
                 e('Fondateur, JNCORP INC.')))
     o.append('<p class="devise">' + DIAMANT
-             + '<span>Equilibrium, Equity and Light</span></p>')
+             + '<span data-fr="%s" data-en="%s">%s</span></p>'
+             % (e(DEVISE_FR), e(DEVISE_EN), e(DEVISE_FR)))
     o.append('<p class="cms-tbc" data-fr="%s" data-en="%s">%s</p>'
              % (e('Texte du fondateur a fournir'),
                 e('Founder statement to be supplied'),
